@@ -1,0 +1,12 @@
+@startuml
+Autonumber
+Actor Utilisateur As U
+Participant Application As A
+U -> A : l'utilisateur clique sur ses favoris
+Alt l'utilisateur a des articles en favoris
+A ->> U : l'application indique les articles favoris
+Else l'utilisateur n'a pas d'articles dans ses favoris
+A ->> U : l'application indique que l'utilisateur n'a aucun favoris
+end
+
+@enduml

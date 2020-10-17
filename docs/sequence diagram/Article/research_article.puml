@@ -1,0 +1,11 @@
+@startuml
+Autonumber
+Actor Utilisateur As U
+Participant Application As A
+U -> A : l'utilisateur cherche un article
+Alt l'article est présent
+A ->> U : l'application renvoie l'article recherché
+Else l'article n'est pas présent
+A ->> U : l'application indique que l'article est peut être mal saisie ou non existant
+end
+@enduml

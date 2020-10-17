@@ -1,0 +1,7 @@
+@startuml
+Autonumber
+Actor Utilisateur As U
+Participant Application As A
+U -> A : L'utilisateur sélectionne un article
+A ->> U : l’application renvoie l'utilisateur sur la description de l'article.
+@enduml

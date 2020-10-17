@@ -1,0 +1,11 @@
+@startuml
+Autonumber
+Actor Utilisateur As U
+Participant Application As A
+U -> A : L'utilisateur saisie son identifiant et mdp
+Alt Identification correcte
+A ->> U : l’application renvoie l'utilisateur vers l'accueil.
+Else Identification incorrecte
+A ->> U : l'application indique que le compte ou mdp est incorrect.
+end
+@enduml

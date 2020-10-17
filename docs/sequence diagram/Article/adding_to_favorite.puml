@@ -1,0 +1,13 @@
+@startuml
+Autonumber
+Actor Utilisateur As U
+Participant Application As A
+U -> A : l'utilisateur choisis d'ajouter l'article à ses favoris
+Alt si l'article n'était pas dans les favoris
+A ->> A : l'application enregistre l'article dans les favoris de l'utilisateur
+A ->> U : l'application indique que l'article est enregistre
+Else l'article était dans les favoris
+A ->> A : l'application retire l'article des favoris de l'utilisateur
+A ->> U : l'application indique que l'article est retiré
+end
+@enduml

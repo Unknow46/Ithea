@@ -1,0 +1,11 @@
+@startuml
+Autonumber
+Actor Utilisateur As U
+Participant Application As A
+U -> A : L'utilisateur ouvre l’application
+Alt Compte utilisateur existant
+U -> A : l’utilisateur choisi de se connecter.
+Else Si Pas de compte
+A ->> U : l'utilisateur choisi de se créer un compte.
+end
+@enduml

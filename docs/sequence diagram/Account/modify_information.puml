@@ -1,0 +1,12 @@
+@startuml
+Autonumber
+Actor Utilisateur As U
+Participant Application As A
+
+U ->A : L'utilisateur clique sur modifier ses informations
+A ->> U : l'application demande de saisir les nouvelles informations
+U -> A : l'utilisateur saisie les nouvelles informations
+U -> A : l'utilisateur valide les nouvelles informations
+A ->> A : l'application enregistre les nouvelles informations
+A ->> U : l'application indique que les changement sont effectués
+@enduml

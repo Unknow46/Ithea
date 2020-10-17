@@ -1,0 +1,12 @@
+@startuml
+Autonumber
+Actor Utilisateur As U
+Participant Application As A
+
+U -> A : l'utilisateur clique sur son historique d'achat
+Alt si l'utilisateur a effectué des achat
+A ->> U : l'application renvoie une liste des achats
+Else si l'utilisateur n'a aucun achat
+A ->> U : l'application indique que l'utilisateur n'a aucun achat
+end
+@enduml

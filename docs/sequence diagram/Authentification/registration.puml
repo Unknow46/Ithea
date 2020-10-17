@@ -1,0 +1,17 @@
+@startuml
+Autonumber
+Actor Utilisateur As U
+Participant Application As A
+U -> A : L'utilisateur saisie son email et mdp
+Alt Demande de validation
+A ->> U : l’application demande de valider l'email.
+Alt Email valide
+U -> A : l'utilisateur valide l'email
+A ->> U : l'application renvoie l'utilisateur a l'accueil
+Else email non valide
+A ->> U : l'application ne renvoie pas l'utilisateur a l'accueil
+end
+Else Email incorrecte
+A ->> U : l'application indique que l'email est incorrecte
+end
+@enduml

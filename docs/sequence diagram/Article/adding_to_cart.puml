@@ -1,0 +1,9 @@
+@startuml
+Autonumber
+Actor Utilisateur As U
+Participant Application As A
+U -> A : l'utilisateur choisis d'ajouter l'article à son panier
+A ->> U : l'application demande le nombre de cette article a mettre dans son panier
+U -> A : l'utilisateur indique le nombre de cette article
+U -> A: l'utilisateur valide l'ajout au panier
+@enduml

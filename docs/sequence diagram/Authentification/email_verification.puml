@@ -1,0 +1,12 @@
+@startuml
+Autonumber
+Actor Utilisateur As U
+Participant Application As A
+U -> A : L'utilisateur saisie son email et mdp
+A ->> A : l'application verifie si le mail est correcte
+Alt mail correcte
+A ->> U : L'application indique que l'addresse est correct
+Else mail incorrecte
+A ->> U : L'application indique que l'addresse est incorrecte
+end
+@enduml
