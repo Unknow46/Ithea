@@ -1,14 +1,17 @@
+# This code is licensed from CircleCI to the user under the MIT license.
+# See here for details: https://circleci.com/developer/orbs/licensing
 version: 2.1
-
-orbs:
-  flutter-orb: sayegh/flutter-orb@1.1.0
-
+description: |
+  Run flutter analyze and tests in CircleCI
+display:
+  source_url: https://github.com/Sayegh7/flutter-orb
+commands: {}
+executors: {}
 jobs:
   lint:
-    description: "Run static analysis for Flutter"
+    description: Run static analysis for Flutter
     docker:
       - image: cirrusci/flutter:stable
-    working_directory: ~/repo
     steps:
       - checkout
       - restore_cache:
@@ -16,23 +19,20 @@ jobs:
             - dart-dependencies-{{ checksum "pubspec.lock" }}
             - dart-dependencies-
       - run:
-          name: Install Dependencies
           command: flutter pub get
-      - run:
-          name: Build
-          command: flutter packages pub run build_runner build
+          name: Install Dependencies
       - save_cache:
+          key: dart-dependencies-{{ checksum "pubspec.lock" }}
           paths:
             - .dart_tool
-          key: dart-dependencies-{{ checksum "pubspec.lock" }}
       - run:
-          name: Analyze code
           command: flutter analyze lib
-  test:
-    description: "Run tests for Flutter"
-    docker:
-      - image: cirrusci/flutter:v1.10.7
+          name: Analyze code
     working_directory: ~/repo
+  test:
+    description: Run tests for Flutter
+    docker:
+      - image: cirrusci/flutter:stable
     steps:
       - checkout
       - restore_cache:
@@ -40,20 +40,19 @@ jobs:
             - dart-dependencies-{{ checksum "pubspec.lock" }}
             - dart-dependencies-
       - run:
-          name: Install Dependencies
           command: flutter pub get
-      - run:
-          name: Build
-          command: flutter packages pub run build_runner build
+          name: Install Dependencies
       - save_cache:
+          key: dart-dependencies-{{ checksum "pubspec.lock" }}
           paths:
             - .dart_tool
-          key: dart-dependencies-{{ checksum "pubspec.lock" }}
       - run:
-          name: Run tests
           command: flutter test
+          name: Run tests
+    working_directory: ~/repo
+
 workflows:
   flutter:
     jobs:
       - lint
-      - test
+        - test
