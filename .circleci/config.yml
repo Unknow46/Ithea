@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  flutter: checkmoney/flutter@1.1.1
+  flutter: checkmoney/flutter@v1.10.7
 
 jobs:
   lint:
