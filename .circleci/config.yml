@@ -7,7 +7,7 @@ jobs:
   lint:
     description: "Run static analysis for Flutter"
     docker:
-      - image: cirrusci/flutter:v1.10.7
+      - image: cirrusci/flutter:stable
     working_directory: ~/repo
     steps:
       - checkout
