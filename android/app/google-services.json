@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "320315080888",
+    "firebase_url": "https://itea-project-21050.firebaseio.com",
+    "project_id": "itea-project-21050",
+    "storage_bucket": "itea-project-21050.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:320315080888:android:d5eddc983f4304032e344d",
+        "android_client_info": {
+          "package_name": "com.example.ithea"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "320315080888-q4t0tm8p9er7plq2orvbi2j15d9pt2gh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ithea",
+            "certificate_hash": "1d63aca5fa2baaef3925535d4a136451f9709e8a"
+          }
+        },
+        {
+          "client_id": "320315080888-r4o1par75iskj3bp505fjpi9stvifsbk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQgA2MJH8j5QfLvR2ZfNwXdtptns6UEJQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "320315080888-r4o1par75iskj3bp505fjpi9stvifsbk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "320315080888-u985q2c6ljam3qj4rjitqnhi84idaefi.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.ithea"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
