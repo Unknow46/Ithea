@@ -1,0 +1,83 @@
+import 'dart:async';
+import 'package:flutter/material.dart';
+import 'package:ithea/screens/home/home_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+class LandingScreen extends StatefulWidget {
+  LandingScreen({Key key}) : super(key: key);
+  final Color backgroundColor = Colors.white;
+  final TextStyle styleTextUnderTheLoader = const TextStyle(
+      fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black);
+
+  @override
+  _LandingScreenState createState() => _LandingScreenState();
+}
+
+class _LandingScreenState extends State<LandingScreen> {
+
+  //final String _versionName = 'V1.0';
+  final splashDelay = 5;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadWidget();
+  }
+
+  Future<Timer> _loadWidget() async {
+    final _duration = Duration(seconds: splashDelay);
+    return Timer(_duration, navigationPage);
+  }
+
+  void navigationPage() {
+    // ignore: inference_failure_on_instance_creation
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => const HomeScreen()));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        backgroundColor: Colors.transparent,
+        body: Stack(
+          children: <Widget>[
+            Container(
+                alignment: const Alignment(0, -0.5),
+                width: MediaQuery
+                    .of(context)
+                    .size
+                    .width,
+                height: MediaQuery
+                    .of(context)
+                    .size
+                    .height,
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/images/landing.jpg'),
+                      fit: BoxFit.cover,
+                    )
+                )
+            ),
+
+            Positioned(
+                width: MediaQuery.of(context).size.width,
+                top: MediaQuery.of(context).size.width * 0.30,
+                child: Container(
+                  margin: const EdgeInsets.all(16),
+                  child:Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Image.asset('assets/images/logo.png',
+                          height: 100,
+                          width: 100,),
+                        const SizedBox(height: 20,),
+                        const Text('Itea', style: TextStyle(
+                            fontSize: 40, color: Colors.white,fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.bold))
+                      ]
+                  ),
+                ))
+          ],
+        )
+    );
+  }
+}
