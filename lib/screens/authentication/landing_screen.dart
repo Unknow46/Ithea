@@ -6,11 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class LandingScreen extends StatefulWidget {
 
-  LandingScreen({Key key}) : super(key: key);
-  final Color backgroundColor = Colors.white;
-  final TextStyle styleTextUnderTheLoader = const TextStyle(
-      fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black);
-
+  const LandingScreen({Key key}) : super(key: key);
   @override
   _LandingScreenState createState() => _LandingScreenState();
 }
@@ -104,8 +100,8 @@ class _LandingScreenState extends State<LandingScreen> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     SizedBox(
-                      width: 200,
-                      height: 40,
+                      width: 235,
+                      height: 45,
                       child:
                       RaisedButton(onPressed: () {
                         //Page Inscription
@@ -116,7 +112,9 @@ class _LandingScreenState extends State<LandingScreen> {
                         ),
                         child: const Text('Inscription',
                             style: TextStyle(
-                              fontSize: 20,
+                              fontFamily: 'Roboto',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
                               color: Colors.white,
                             )
                         ),
@@ -124,8 +122,8 @@ class _LandingScreenState extends State<LandingScreen> {
                     ),
                     const Padding(padding:  EdgeInsets.only(top: 20)),
                     SizedBox(
-                      width: 200,
-                      height: 40,
+                      width: 235,
+                      height: 45,
                       child:
                       RaisedButton(onPressed: () {
                         //
@@ -137,12 +135,15 @@ class _LandingScreenState extends State<LandingScreen> {
                         ),
                         child: const Text('Connexion',
                             style: TextStyle(
-                              fontSize: 20,
+                              fontFamily: 'Roboto',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
                               color: Colors.white,
                             )
                         ),
                       ),
                     ),
+                    const Padding(padding:  EdgeInsets.only(top: 10)),
                   ],
                 ),
               )
