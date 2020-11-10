@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ithea/ressources/dark_colors.dart';
 
 void main() => runApp(const LoginSignin());
 
@@ -55,7 +56,7 @@ class LoginSignin extends StatelessWidget {
                     RaisedButton(onPressed: () {
                       //Page Inscription
                     },
-                      color: const Color.fromRGBO(182,209,183,1),
+                      color: darkColors.breakedGreen,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(18)
                       ),

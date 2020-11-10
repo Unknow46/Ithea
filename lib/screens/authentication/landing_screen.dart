@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:ithea/ressources/dark_colors.dart';
 import 'package:ithea/screens/authentication/login_signin.dart';
 import 'package:ithea/screens/home/home_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -83,9 +84,13 @@ class _LandingScreenState extends State<LandingScreen> {
                           height: 100,
                           width: 100,),
                         const SizedBox(height: 20,),
+                        const CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(darkColors.breakedGreen),
+                        ),
                       ]
                   ),
-                ))
+                )
+            )
           ],
         )
     );
