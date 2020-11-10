@@ -73,7 +73,7 @@ class LoginSignin extends StatelessWidget {
                     height: 40,
                     child:
                     RaisedButton(onPressed: () {
-                      //Page Inscription
+                      //
                     },
                       color: const Color.fromRGBO(0,0,0,0),
                       shape: RoundedRectangleBorder(
