@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:ithea/ressources/dark_colors.dart';
+import 'package:ithea/screens/authentication/login.dart';
 import 'package:ithea/screens/home/home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -104,7 +105,7 @@ class _LandingScreenState extends State<LandingScreen> {
                       height: 45,
                       child:
                       RaisedButton(onPressed: () {
-                        //Page Inscription
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => const Login()));
                       },
                         color: darkColors.breakedGreen,
                         shape: RoundedRectangleBorder(
