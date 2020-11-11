@@ -1,27 +1,21 @@
 import 'dart:async';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:ithea/ressources/dark_colors.dart';
-import 'package:ithea/screens/authentication/login_signin.dart';
 import 'package:ithea/screens/home/home_screen.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class LandingScreen extends StatefulWidget {
 
-  LandingScreen({Key key}) : super(key: key);
-  final Color backgroundColor = Colors.white;
-  final TextStyle styleTextUnderTheLoader = const TextStyle(
-      fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black);
-
+  const LandingScreen({Key key}) : super(key: key);
   @override
   _LandingScreenState createState() => _LandingScreenState();
 }
 
 
 class _LandingScreenState extends State<LandingScreen> {
-  //final String _versionName = 'V1.0';
-  final splashDelay = 5;
+  final splashDelay = 4;
+  var isVisible = false;
+  var isLoading = true;
 
   @override
   void initState() {
@@ -39,13 +33,16 @@ class _LandingScreenState extends State<LandingScreen> {
         .authStateChanges()
         .listen((User user) {
       if (user == null) {
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => const LoginSignin()));
+        //Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => const LoginSignin()));
+        setState((){
+          isVisible = true;
+          isLoading = false;
+        });
       }
       else {
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => const HomeScreen()));
       }
     });
-    // ignore: inference_failure_on_instance_creation
   }
 
   @override
@@ -84,13 +81,73 @@ class _LandingScreenState extends State<LandingScreen> {
                           height: 100,
                           width: 100,),
                         const SizedBox(height: 20,),
-                        const CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation<Color>(darkColors.breakedGreen),
+                        Visibility(
+                          visible: isLoading,
+                          child:
+                          const CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(darkColors.breakedGreen),
+                          ),
                         ),
                       ]
                   ),
                 )
-            )
+            ),
+            Visibility(
+                visible: isVisible,
+                child:
+              Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    SizedBox(
+                      width: 235,
+                      height: 45,
+                      child:
+                      RaisedButton(onPressed: () {
+                        //Page Inscription
+                      },
+                        color: darkColors.breakedGreen,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18)
+                        ),
+                        child: const Text('Inscription',
+                            style: TextStyle(
+                              fontFamily: 'Roboto',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                              color: Colors.white,
+                            )
+                        ),
+                      ),
+                    ),
+                    const Padding(padding:  EdgeInsets.only(top: 20)),
+                    SizedBox(
+                      width: 235,
+                      height: 45,
+                      child:
+                      RaisedButton(onPressed: () {
+                        //
+                      },
+                        color: const Color.fromRGBO(0,0,0,0),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18),
+                            side: const BorderSide(color: Colors.white)
+                        ),
+                        child: const Text('Connexion',
+                            style: TextStyle(
+                              fontFamily: 'Roboto',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                              color: Colors.white,
+                            )
+                        ),
+                      ),
+                    ),
+                    const Padding(padding:  EdgeInsets.only(top: 10)),
+                  ],
+                ),
+              )
+            ),
           ],
         )
     );
