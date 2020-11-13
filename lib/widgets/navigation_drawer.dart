@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:ithea/widgets/create_drawer_body.dart';
@@ -11,6 +12,7 @@ class NavigationDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
+
         padding: EdgeInsets.zero,
         children: <Widget>[
           createDrawerHeader(),
@@ -66,42 +68,49 @@ class NavigationDrawer extends StatelessWidget {
           ),
           const Padding(padding: EdgeInsets.only(top:20)),
           const Divider(),
-         Row(
-           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-           children: <Widget>[
-             Column(
-               children: const <Widget>[
-                Padding(padding: EdgeInsets.only(top: 20),
-                child:  Align(
-                  alignment: Alignment.bottomLeft,
-                  child: Icon(Icons.help_outline),
-                  )
-                ),
-                  Align(
-                       alignment: Alignment.bottomLeft,
+         PreferredSize(
+             preferredSize: const Size.fromWidth(140),
+             child:  Row(
+               mainAxisSize: MainAxisSize.min,
+               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+               children: <Widget>[
+                 Flexible(child:
+                 Column(
+                   children: const <Widget>[
+                     Padding(padding: EdgeInsets.only(top: 20),
+                         child:  Align(
+                           alignment: Alignment.bottomCenter,
+                           child: Icon(Icons.help_outline),
+                         )
+                     ),
+                     Align(
+                       alignment: Alignment.bottomCenter,
                        child: CustomTextStyle('Aide et feedback',
                            FontWeight.normal, 18),
                      ),
-               ],
-             ),
-             Column(
-               children: const <Widget>[
-                 Padding(padding: EdgeInsets.only(left: 10, top: 20),
-                     child:  Align(
-                       alignment: Alignment.bottomLeft,
-                       child: Icon(Icons.share),
-                     )
+                   ],
                  ),
-                 Padding(padding: EdgeInsets.only(left: 10),
-                     child:  Align(
-                       alignment: Alignment.bottomLeft,
-                       child: CustomTextStyle('Partage', FontWeight.normal, 18),
+                 ),
+                 Flexible(child:
+                 Column(
+                   children: const <Widget>[
+                     Padding(padding: EdgeInsets.only(left: 10, top: 20),
+                         child:  Align(
+                           alignment: Alignment.bottomCenter,
+                           child: Icon(Icons.share),
+                         )
                      ),
+                     Padding(padding: EdgeInsets.only(left: 10),
+                       child:  Align(
+                         alignment: Alignment.bottomCenter,
+                         child: CustomTextStyle('Partage', FontWeight.normal, 18),
+                       ),
+                     ),
+                   ],
+                 ),
                  ),
                ],
-             ),
-           ],
-         ),
+             )),
          const Padding(padding: EdgeInsets.only(top: 40),
          child:  Align(
            child: CustomTextStyle('v 1.0.0', FontWeight.normal, 14),
