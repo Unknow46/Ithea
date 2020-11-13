@@ -53,6 +53,8 @@ flutter:
   assets:
     - assets/images/landing.jpg
     - assets/images/logo.png
+    - assets/images/greenLogo.png
+    - assets/images/vector.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
