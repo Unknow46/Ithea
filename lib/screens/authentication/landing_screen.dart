@@ -6,7 +6,6 @@ import 'package:ithea/screens/home/home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class LandingScreen extends StatefulWidget {
-
   const LandingScreen({Key key}) : super(key: key);
   @override
   _LandingScreenState createState() => _LandingScreenState();

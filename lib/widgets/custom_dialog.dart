@@ -47,7 +47,7 @@ class CustomDialog extends StatelessWidget {
                 top: -60,
                 child: CircleAvatar(
                   backgroundColor: darkColors.breakedGreen,
-                  radius: 55,
+                  radius: 50,
                   child: Icon(icon, color: Colors.white, size: 50,),
                 )
             ),

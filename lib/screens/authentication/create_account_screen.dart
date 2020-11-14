@@ -8,6 +8,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ithea/screens/home/home_screen.dart';
 import 'package:ithea/widgets/custom_dialog.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import '../../globals.dart' as globals;
 
 void main() => runApp(CreateAccountScreen());
 
@@ -133,7 +134,7 @@ class CreateAccountScreen extends StatelessWidget {
                       SignInButton(
                         Buttons.FacebookNew,
                         text: 'Continue with Facebook',
-                        onPressed: () {},
+                        onPressed: () {print(globals.isLoggedIn);},
                       ),
                       const Divider(),
                       SignInButton(
@@ -174,10 +175,11 @@ class CreateAccountScreen extends StatelessWidget {
       return;
     }
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      final authResult = await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
       );
+      //final user = authResult.user;
       await Navigator.pushReplacement(
           context,
           MaterialPageRoute(
