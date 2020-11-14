@@ -19,6 +19,7 @@ class CreateAccountScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
         appBar: AppBar(
           elevation: 0,
           brightness: Brightness.light,
