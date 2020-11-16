@@ -31,11 +31,16 @@ class AppBarIthea extends StatelessWidget implements PreferredSizeWidget {
                       )
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(bottom: 74),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 74),
                   child: Align(
                     alignment: Alignment.bottomLeft,
-                    child: CustomTextStyle('Retour', FontWeight.bold, 13)
+                    child: GestureDetector(
+                        onTap: () {
+                        Navigator.pop(context);
+                        },
+                        child: const CustomTextStyle('Retour', FontWeight.bold, 13),
+                    ),
                   ),
                 ),
               ],
