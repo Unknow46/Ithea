@@ -37,7 +37,7 @@ class CreateAccountScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              const SizedBox(height: 15,),
+              const SizedBox(height: 60,),
               const Padding(
                 padding: EdgeInsets.only(
                   left: 15,),
@@ -179,7 +179,7 @@ class CreateAccountScreen extends StatelessWidget {
         email: emailController.text,
         password: passwordController.text,
       );
-      //final user = authResult.user;
+
       await Navigator.pushReplacement(
           context,
           MaterialPageRoute(

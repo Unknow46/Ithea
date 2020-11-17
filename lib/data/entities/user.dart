@@ -1,16 +1,22 @@
 class User {
+  User(
+      String displayName,
+      String email,
+      dynamic  emailVerified,
+      String photoURL,
+      String uid){
+    this.displayName = displayName;
+    this.email = email;
+    this.emailVerified = emailVerified;
+    this.photoURL = photoURL;
+    this.uid= uid;
+  }
+
   String displayName;
   String email;
   bool emailVerified;
   String photoURL;
   String uid;
-
-  User(
-      {this.displayName,
-        this.email,
-        this.emailVerified,
-        this.photoURL,
-        this.uid});
 
   User.fromJson(Map<String, dynamic> json) {
     displayName = json['displayName'];
