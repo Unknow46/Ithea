@@ -6,6 +6,8 @@ import 'package:ithea/ressources/dark_colors.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ithea/screens/home/home_screen.dart';
+import 'package:ithea/widgets/auth_form.dart';
+import 'package:ithea/widgets/auth_form.dart';
 import 'package:ithea/widgets/custom_dialog.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import '../../globals.dart' as globals;
@@ -13,10 +15,7 @@ import '../../globals.dart' as globals;
 void main() => runApp(CreateAccountScreen());
 
 class CreateAccountScreen extends StatelessWidget {
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-  final pseudoController = TextEditingController();
-
+  var authForm = AuthForm(isVisible: true);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,68 +58,25 @@ class CreateAccountScreen extends StatelessWidget {
                   width: 300,
                   child: Column(
                     children: [
+                      authForm,
                       const SizedBox(height: 30,),
-                      Container(
-                        height: 50,
-                        width: 450,
-                        child: TextField(
-                          controller: emailController,
-                          decoration: InputDecoration(
-                            hintText: 'Email',
-                            suffixIcon: const Icon(Icons.email),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0),
+                      Center(
+                        child: SizedBox(
+                          height: 45,
+                          width: 200,
+                          child: RaisedButton(onPressed: () {
+                            emailRegister(context);
+                          },
+                            color: darkColors.breakedGreen,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)
                             ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 10,),
-                      Container(
-                        height: 50,
-                        width: 450,
-                        child: TextField(
-                          controller: passwordController,
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            hintText: 'Password',
-                            suffixIcon: const Icon(Icons.visibility_off),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0),
+                            child: Text('Create Account',
+                              style: GoogleFonts.roboto(
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
                             ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 10,),
-                      Container(
-                        height: 50,
-                        width: 450,
-                        child: TextField(
-                          controller: pseudoController,
-                          decoration: InputDecoration(
-                            hintText: 'Pseudo',
-                            suffixIcon: const Icon(Icons.account_circle),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 30,),
-                      SizedBox(
-                        height: 40,
-                        width: 200,
-                        child: RaisedButton(onPressed: () {
-                          emailRegister(context);
-                        },
-                          color: darkColors.breakedGreen,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10)
-                          ),
-                          child: Text('Create Account',
-                            style: GoogleFonts.roboto(
-                                fontSize: 20,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
                           ),
                         ),
                       ),
@@ -161,23 +117,23 @@ class CreateAccountScreen extends StatelessWidget {
   }
 
   void emailRegister(BuildContext context) async {
-    final emailValid = mailValidator(emailController.text);
+    final emailValid = mailValidator(authForm.getEmailText());
     if (!emailValid) {
       showAlert(context, 'please insert a valid email address');
       return;
     }
-    if (passwordController.text.isEmpty) {
+    if (authForm.getPasswordText().isEmpty) {
       showAlert(context, 'please insert a password');
       return;
     }
-    if (pseudoController.text.isEmpty) {
+    if (authForm.getPseudoText().isEmpty) {
       showAlert(context, 'please insert a pseudo');
       return;
     }
     try {
       final authResult = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: emailController.text,
-        password: passwordController.text,
+        email: authForm.getEmailText(),
+        password: authForm.getPasswordText(),
       );
 
       await Navigator.pushReplacement(
