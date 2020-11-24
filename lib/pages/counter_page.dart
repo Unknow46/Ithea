@@ -30,7 +30,7 @@ class CounterPage extends StatelessWidget {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
+              children: <Widget>[ 
                 FlatButton.icon(
                     onPressed: counter.increment,
                     icon: const Icon(Icons.add),

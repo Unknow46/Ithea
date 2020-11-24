@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ithea/pages/counter_page.dart';
+import 'package:ithea/pages/article_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: CounterPage(),
+      home: ArticlePage(),
     );
   }
 
