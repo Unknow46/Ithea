@@ -151,7 +151,7 @@ class CreateAccountScreen extends StatelessWidget {
     );
   }
 
-  void emailRegister(BuildContext context) async {
+  Future<void> emailRegister(BuildContext context) async {
     final emailValid = mailValidator(authForm.getEmailText());
     if (!emailValid) {
       showAlert(context, 'please insert a valid email address');
@@ -205,7 +205,7 @@ class CreateAccountScreen extends StatelessWidget {
     return emailValid;
   }
 
-  void signInWithGoogle(BuildContext context) async {
+  Future<void> signInWithGoogle(BuildContext context) async {
     final googleSignIn = GoogleSignIn();
 
     await Firebase.initializeApp();

@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_view.dart';
@@ -5,8 +7,9 @@ import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ithea/ressources/dark_colors.dart';
 import 'package:ithea/screens/authentication/create_account_screen.dart';
-import 'package:ithea/screens/authentication/signin.dart';
+import 'package:ithea/screens/home/home_screen.dart';
 import 'package:ithea/widgets/auth_form.dart';
+import 'package:ithea/widgets/custom_dialog.dart';
 
 void main() => runApp(Login());
 
@@ -63,7 +66,8 @@ class Login extends StatelessWidget {
                       SizedBox(
                         height: 40,
                         width: 200,
-                        child:RaisedButton(onPressed: () {},
+                        child:RaisedButton(
+                          onPressed: () {connexion(context);},
                           color: darkColors.breakedGreen,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)
@@ -152,5 +156,51 @@ class Login extends StatelessWidget {
         ),
       )
     );
+  }
+
+  Future<void> connexion(BuildContext context) async {
+    final email = authForm.getEmailText();
+    final password = authForm.getPasswordText();
+
+    if (email.isEmpty) {
+      await showDialog(
+        context: context,
+        builder: (context) =>
+            CustomDialog(
+              icon: Icons.warning, message: 'please insert a valid email address', title: 'Warning',),
+      );
+      return;
+    } else if(password.isEmpty) {
+      await showDialog(
+        context: context,
+        builder: (context) =>
+            CustomDialog(
+              icon: Icons.warning, message: 'please insert a password', title: 'Warning',),
+      );
+      return;
+    }
+    try {
+      final userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: email,
+          password: password,
+      );
+      await Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => const HomeScreen()));
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        await showDialog(
+          context: context,
+          builder: (context) =>
+              CustomDialog(
+                icon: Icons.warning, message: 'No user found for that email.', title: 'Warning',),
+        );
+      } else if (e.code == 'wrong-password') {
+        await showDialog(
+          context: context,
+          builder: (context) =>
+              CustomDialog(
+                icon: Icons.warning, message: 'Wrong password provided for that user.', title: 'Warning',),
+        );
+      }
+    }
   }
 }
