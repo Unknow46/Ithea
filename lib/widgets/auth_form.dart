@@ -21,12 +21,9 @@ class AuthForm extends StatelessWidget {
           width: 450,
           child: TextField(
             controller: emailController,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               hintText: 'Email',
-              suffixIcon: const Icon(Icons.email),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
+              suffixIcon: Icon(Icons.email),
             ),
           ),
         ),
@@ -37,12 +34,9 @@ class AuthForm extends StatelessWidget {
           child: TextField(
             controller: passwordController,
             obscureText: true,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               hintText: 'Password',
-              suffixIcon: const Icon(Icons.visibility_off),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
+              suffixIcon: Icon(Icons.visibility_off),
             ),
           ),
         ),
@@ -54,12 +48,9 @@ class AuthForm extends StatelessWidget {
             width: 450,
             child: TextField(
               controller: pseudoController,
-              decoration: InputDecoration(
-                hintText: 'Pseudo',
-                suffixIcon: const Icon(Icons.account_circle),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
+              decoration: const InputDecoration(
+                hintText: 'Name',
+                suffixIcon: Icon(Icons.account_circle),
               ),
             ),
           ),

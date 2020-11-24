@@ -4,12 +4,15 @@ import 'package:flutter_signin_button/button_view.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ithea/ressources/dark_colors.dart';
+import 'package:ithea/screens/authentication/create_account_screen.dart';
 import 'package:ithea/screens/authentication/signin.dart';
+import 'package:ithea/widgets/auth_form.dart';
 
-void main() => runApp(const Login());
+void main() => runApp(Login());
 
 class Login extends StatelessWidget {
-  const Login({Key key}) : super(key: key);
+  var authForm = AuthForm(isVisible: false);
+  // const Login({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +35,7 @@ class Login extends StatelessWidget {
           decoration:const BoxDecoration(
               image: DecorationImage(
                   alignment: Alignment.topRight,
-                  image: AssetImage('assets/images/Vector.png'),
+                  image: AssetImage('assets/images/vector.png'),
                   )
               ),
           child: Column(
@@ -55,18 +58,7 @@ class Login extends StatelessWidget {
                   width: 300,
                   child: Column(
                     children: [
-                      const TextField(
-                        decoration: InputDecoration(
-                            labelText: 'Email'
-                        ),
-                      ),
-                      const SizedBox(height: 10,),
-                      const TextField(
-                        obscureText: true,
-                        decoration: InputDecoration(
-                            labelText: 'PassWord'
-                        ),
-                      ),
+                      authForm,
                       const SizedBox(height: 30,),
                       SizedBox(
                         height: 40,
@@ -97,7 +89,7 @@ class Login extends StatelessWidget {
                       ),
                       const SizedBox(height: 30,),
                       SignInButton(
-                          Buttons.Facebook,
+                          Buttons.FacebookNew,
                           text: 'Continuer avec Facebook',
                           shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10)
@@ -140,7 +132,7 @@ class Login extends StatelessWidget {
                           const Text('Pas encore parmis nous ? '),
                           InkWell(
                             // ignore: inference_failure_on_instance_creation
-                            onTap: () {Navigator.push(context,MaterialPageRoute(builder: (context) => const Signin()));},
+                            onTap: () {Navigator.push(context,MaterialPageRoute(builder: (context) => CreateAccountScreen()));},
                             child: const Text('Inscription',
                               style: TextStyle(
                                 fontSize: 15,

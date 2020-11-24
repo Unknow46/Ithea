@@ -6,6 +6,7 @@ import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:ithea/ressources/dark_colors.dart';
+import 'package:ithea/screens/authentication/login.dart';
 import 'package:ithea/screens/home/home_screen.dart';
 import 'package:ithea/widgets/auth_form.dart';
 import 'package:ithea/widgets/custom_dialog.dart';
@@ -23,22 +24,23 @@ class CreateAccountScreen extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomPadding: false,
         appBar: AppBar(
-          elevation: 0,
-          brightness: Brightness.light,
-          backgroundColor: Colors.white,
-          title: Center(
-            child: Image.asset(
-                'assets/images/greenLogo.png', fit: BoxFit.cover),
-          ),
+            centerTitle: true,
+            elevation: 0,
+            brightness: Brightness.light,
+            backgroundColor: Colors.transparent,
+            title: Image.asset('assets/images/Logo_Small.png'),
+            leading: IconButton(
+              onPressed:(){Navigator.pop(context);},
+              icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
+            )
         ),
         // ignore: avoid_unnecessary_containers
         body: Container(
           width: double.infinity,
-          color: Colors.white,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              const SizedBox(height: 60,),
+              const SizedBox(height: 35,),
               const Padding(
                 padding: EdgeInsets.only(
                   left: 15,),
@@ -92,22 +94,53 @@ class CreateAccountScreen extends StatelessWidget {
                       SignInButton(
                         Buttons.FacebookNew,
                         text: 'Continue with Facebook',
+                        shape:
+                        RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)
+                        ),
                         onPressed: () {print(globals.isLoggedIn);},
                       ),
-                      const Divider(),
                       SignInButton(
                         Buttons.Google,
                         text: 'Continue with Google',
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                         onPressed: () {
                           signInWithGoogle(context);
                         },
                       ),
-                      const Divider(),
                       SignInButton(
                         Buttons.AppleDark,
                         text: 'Continue with Apple',
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                         onPressed: () {},
                       ),
+                      Text('I-TEA', style: GoogleFonts.vidaloka(
+                          fontSize: 100,
+                          color: const Color.fromRGBO(182, 209, 183, 0.2)
+                      ),
+                      ),
+                      const SizedBox(height: 5,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text('Pas encore parmis nous ? '),
+                          InkWell(
+                            // ignore: inference_failure_on_instance_creation
+                            onTap: () {Navigator.push(context,MaterialPageRoute(builder: (context) => Login()));},
+                            child: const Text('Connexion',
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: darkColors.breakedBlue
+                              ),
+                            ),
+                          )
+                        ],
+                      )
                     ],
                   ),
                 ),
