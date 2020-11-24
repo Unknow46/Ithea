@@ -1,16 +1,6 @@
-class User {
-  User(
-      String displayName,
-      String email,
-      dynamic  emailVerified,
-      String photoURL,
-      String uid){
-    this.displayName = displayName;
-    this.email = email;
-    this.emailVerified = emailVerified;
-    this.photoURL = photoURL;
-    this.uid= uid;
-  }
+class Client {
+
+  Client(this.displayName, this.email,this.emailVerified,this.photoURL,this.uid);
 
   String displayName;
   String email;
@@ -18,7 +8,7 @@ class User {
   String photoURL;
   String uid;
 
-  User.fromJson(Map<String, dynamic> json) {
+  Client.fromJson(Map<String, dynamic> json) {
     displayName = json['displayName'];
     email = json['email'];
     emailVerified = json['emailVerified'];
