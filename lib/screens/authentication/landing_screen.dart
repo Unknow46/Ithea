@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:ithea/ressources/dark_colors.dart';
+import 'package:ithea/screens/authentication/login.dart';
 import 'package:ithea/screens/authentication/create_account_screen.dart';
 import 'package:ithea/screens/home/home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:lottie/lottie.dart';
 
 class LandingScreen extends StatefulWidget {
   const LandingScreen({Key key}) : super(key: key);
@@ -78,16 +80,18 @@ class _LandingScreenState extends State<LandingScreen> {
                   child:Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
+
                         Image.asset('assets/images/logo.png',
                           height: 100,
                           width: 100,),
-                        const SizedBox(height: 20,),
+
                         Visibility(
                           visible: isLoading,
                           child:
-                          const CircularProgressIndicator(
+                              Lottie.asset('assets/lottie/leaf.json'),
+                          /*const CircularProgressIndicator(
                             valueColor: AlwaysStoppedAnimation<Color>(darkColors.breakedGreen),
-                          ),
+                          ),*/
                         ),
                       ]
                   ),
@@ -127,7 +131,7 @@ class _LandingScreenState extends State<LandingScreen> {
                       height: 45,
                       child:
                       RaisedButton(onPressed: () {
-                        //
+                        Navigator.push(context,MaterialPageRoute(builder: (context) => const Login()));
                       },
                         color: const Color.fromRGBO(0,0,0,0),
                         shape: RoundedRectangleBorder(
