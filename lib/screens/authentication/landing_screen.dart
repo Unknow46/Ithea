@@ -1,11 +1,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:ithea/ressources/dark_colors.dart';
+import 'package:ithea/screens/authentication/create_account_screen.dart';
 import 'package:ithea/screens/home/home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class LandingScreen extends StatefulWidget {
-
   const LandingScreen({Key key}) : super(key: key);
   @override
   _LandingScreenState createState() => _LandingScreenState();
@@ -40,6 +40,7 @@ class _LandingScreenState extends State<LandingScreen> {
         });
       }
       else {
+        print(user);
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => const HomeScreen()));
       }
     });
@@ -104,7 +105,7 @@ class _LandingScreenState extends State<LandingScreen> {
                       height: 45,
                       child:
                       RaisedButton(onPressed: () {
-                        //Page Inscription
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => CreateAccountScreen()));
                       },
                         color: darkColors.breakedGreen,
                         shape: RoundedRectangleBorder(

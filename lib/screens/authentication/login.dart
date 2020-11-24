@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ithea/ressources/dark_colors.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 
 void main() => runApp(const Login());
 
@@ -32,7 +33,6 @@ class Login extends StatelessWidget {
                     fontSize: 30,
                     fontWeight: FontWeight.bold),
               ),
-
             const SizedBox(height: 5,),
             Padding(
               padding: const EdgeInsets.only(left: 5),
@@ -41,9 +41,7 @@ class Login extends StatelessWidget {
                     fontSize: 15),
               ),
             ),
-
             const SizedBox(height: 50,),
-
             Center(
               child:
               Container(
@@ -84,9 +82,7 @@ class Login extends StatelessWidget {
                               ),
                           ),
                       ),
-
                     const SizedBox(height: 10,),
-                    
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       // ignore: prefer_const_literals_to_create_immutables
@@ -94,101 +90,37 @@ class Login extends StatelessWidget {
                         const Text('Forgot your password?')
                       ],
                     ),
-
                     const SizedBox(height: 30,),
-
                    /* Divider(
                       height:20,
                       thickness: 0.5,
                       color: Colors.black,
                     ),*/
-
                     const SizedBox(height: 10,),
-
-                    SizedBox(
-                      height: 40,
-                      width: 250,
-                      child:RaisedButton(onPressed: () {},
-                        color: darkColors.breakedBlue,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)
-                        ),
-                        child: Row(
-                          children: [
-                            const Icon(Icons.info),
-                            Text('   Continuer avec Facebook',
-                              style: GoogleFonts.roboto(
-                                fontSize: 15,
-                                color: Colors.white,),
-                            ),
-                          ],
-                        )
-                      ),
+                    SignInButton(
+                      Buttons.FacebookNew,
+                      onPressed: () {
+                      },
                     ),
-
-                    const SizedBox(height: 5,),
-
-                    SizedBox(
-                      height: 40,
-                      width: 250,
-                      child:RaisedButton(onPressed: () {},
-                          color: Colors.white,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              side: const BorderSide(color: Colors.black)
-                          ),
-                          child: Row(
-                            children: [
-                              const Icon(Icons.info),
-                              Text('   Continuer avec Google',
-                                style: GoogleFonts.roboto(
-                                  fontSize: 15,
-                                  color: Colors.black,),
-                              ),
-                            ],
-                          )
-                      ),
+                    const Divider(),
+                    SignInButton(
+                      Buttons.Google,
+                      onPressed: () {
+                      },
                     ),
-
-                    const SizedBox(height: 5,),
-
-                    SizedBox(
-                      height: 40,
-                      width: 250,
-                      child:RaisedButton(onPressed: () {},
-                          color: Colors.black,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Row(
-                            children: [
-                              const Icon(CupertinoIcons.add),
-                              Text('   Continuer avec Apple',
-                                style: GoogleFonts.roboto(
-                                  fontSize: 15,
-                                  color: Colors.white,),
-                              ),
-                            ],
-                          )
-                      ),
+                    const Divider(),
+                    SignInButton(
+                      Buttons.AppleDark,
+                      onPressed: () {
+                      },
                     ),
-
-
-
                   ],
                 ),
               ),
             ),
-
-
-
           ],
-
         ),
-
       )
-
-
     );
   }
 }
