@@ -6,8 +6,8 @@ import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:ithea/ressources/dark_colors.dart';
-import 'package:ithea/screens/authentication/login.dart';
-import 'package:ithea/screens/home/home_screen.dart';
+import 'package:ithea/pages/authentication/login.dart';
+import 'package:ithea/pages/home/home_screen.dart';
 import 'package:ithea/widgets/auth_form.dart';
 import 'package:ithea/widgets/custom_dialog.dart';
 
