@@ -6,6 +6,7 @@ import 'article_details_page.dart';
 
 
 class ArticlePage extends StatelessWidget {
+  const ArticlePage({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +19,7 @@ class ArticlePage extends StatelessWidget {
             Icons.arrow_back,
             color: Colors.greenAccent,
           ),
-          onPressed: (null),
+          onPressed: null,
         ),
         title: const Text(
           'LOGO',
@@ -36,7 +37,7 @@ class ArticlePage extends StatelessWidget {
         ],
       ),
       body: ListView(
-        padding: EdgeInsets.only(left: 20),
+        padding: const EdgeInsets.only(left: 20),
         children: <Widget>[
           Container(
             padding: const EdgeInsets.only(right: 15),
@@ -70,13 +71,13 @@ class ArticlePage extends StatelessWidget {
   }
 
   Widget _buildCard(String name, String price, String imgpath, bool isFavourite,
-      context, bool added) {
+      dynamic buildContext, bool added) {
     return Padding(
         padding: const EdgeInsets.only(top: 15, bottom: 5, left: 5, right: 5),
         child: InkWell(
             onTap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => ArticleDetail(
+              Navigator.of(buildContext).push(
+                  MaterialPageRoute <dynamic>(builder: (context) => ArticleDetail(
                     assetPath: imgpath,
                     teaprice: price,
                     teaname: name,
@@ -150,7 +151,7 @@ class ArticlePage extends StatelessWidget {
                     children: [
                       if (!added) ...[
                         const Icon(Icons.shopping_basket,
-                            color: Colors.greenAccent, size: 12.0),
+                            color: Colors.greenAccent, size: 12),
                         const Text('Add to cart',
                             style: TextStyle(
                                 fontFamily: 'Varela',
@@ -159,15 +160,15 @@ class ArticlePage extends StatelessWidget {
                       ],
                       if (added) ...[
                         const Icon(Icons.remove_circle_outline,
-                            color: Colors.greenAccent, size: 12.0),
+                            color: Colors.greenAccent, size: 12),
                         const Text('3',
                             style: TextStyle(
                                 fontFamily: 'Varela',
                                 color: Colors.greenAccent,
                                 fontWeight: FontWeight.bold,
-                                fontSize: 12.0)),
+                                fontSize: 12)),
                         const Icon(Icons.add_circle_outline,
-                            color: Colors.greenAccent, size: 12.0),
+                            color: Colors.greenAccent, size: 12),
                       ]
                     ],
                   ),

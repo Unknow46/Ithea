@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ArticleDetail extends StatelessWidget {
-  final assetPath, teaprice, teaname;
-
   const ArticleDetail({Key key, this.assetPath, this.teaprice, this.teaname})
       : super(key: key);
+
+  final String assetPath, teaprice, teaname;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,15 +15,15 @@ class ArticleDetail extends StatelessWidget {
         elevation: 0,
         centerTitle: true,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Color(0xFF545D68)),
+          icon: const Icon(Icons.arrow_back, color: Color(0xFF545D68)),
           onPressed: () {
             Navigator.of(context).pop();
           },
         ),
-        title: Text('Pickup',
+        title: const Text('Pickup',
             style: TextStyle(
                 fontFamily: 'Varela',
-                fontSize: 20.0,
+                fontSize: 20,
                 color: Color(0xFF545D68))),
         actions: <Widget>[
           IconButton(
@@ -35,7 +35,7 @@ class ArticleDetail extends StatelessWidget {
       body: ListView(children: [
         const SizedBox(height: 45),
         Padding(
-          padding: EdgeInsets.only(left: 20.0),
+          padding:const EdgeInsets.only(left: 20),
           child: Center(
             child: Text(
               teaname,
@@ -85,14 +85,13 @@ class ArticleDetail extends StatelessWidget {
             width: MediaQuery.of(context).size.width - 50.0,
             child: Text(
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget sodales diam velit dapibus viverra.',
-                style: GoogleFonts.getFont('Vidaloka',color: Color(0xFFB4B8B9))),
+                style: GoogleFonts.getFont('Vidaloka',color: const Color(0xFFB4B8B9))),
           ),
         ),
         const SizedBox(height: 30),
         Center(
           child: InkWell(
             onTap: () {
-              print('Hello There');
             },
             child: Container(
               width: MediaQuery.of(context).size.width - 50.0,
