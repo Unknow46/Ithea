@@ -51,7 +51,6 @@ class ArticlePage extends StatelessWidget {
               childAspectRatio: 0.8,
               children: <Widget>[
                 _buildCard('Tea1', '14,00 €', 'assets/images/teaPic.png',
-                _buildCard('Tea1', '3.99 USD', 'assets/images/teaPic3.png', true,
                     true, context, false),
               ],
             ),
