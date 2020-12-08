@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ithea/widgets/app_bar_ithea.dart';
 
 class ArticleDetail extends StatelessWidget {
   const ArticleDetail({Key key, this.assetPath, this.teaprice, this.teaname})
@@ -10,28 +11,7 @@ class ArticleDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Color(0xFF545D68)),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-        title: const Text('Pickup',
-            style: TextStyle(
-                fontFamily: 'Varela',
-                fontSize: 20,
-                color: Color(0xFF545D68))),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.notifications_none, color: Color(0xFF545D68)),
-            onPressed: () {},
-          ),
-        ],
-      ),
+      appBar: const AppBarIthea('Test'),
       body: ListView(children: [
         const SizedBox(height: 45),
         Padding(
