@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:ithea/widgets/app_bar_ithea.dart';
 
 import 'article_details_page.dart';
 
@@ -10,32 +11,7 @@ class ArticlePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        centerTitle: true,
-        leading: const IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            color: Colors.greenAccent,
-          ),
-          onPressed: null,
-        ),
-        title: const Text(
-          'LOGO',
-          style: TextStyle(
-              fontFamily: 'Varela', fontSize: 20, color: Color(0xFF545D68)),
-        ),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(
-              Icons.list,
-              color: Colors.grey,
-            ),
-            onPressed: () {},
-          )
-        ],
-      ),
+      appBar:const AppBarIthea('Boutique'),
       body: ListView(
         padding: const EdgeInsets.only(left: 20),
         children: <Widget>[

@@ -1,21 +1,26 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ithea/widgets/app_bar_ithea.dart';
 
 class ArticleDetail extends StatelessWidget {
-  const ArticleDetail({Key key, this.assetPath, this.teaprice, this.teaname})
+  ArticleDetail({Key key, this.assetPath, this.teaprice, this.teaname})
       : super(key: key);
+
+
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  Article article = Article('Green tea', 20.5, 'logo.png', false);
 
   final String assetPath, teaprice, teaname;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppBarIthea('Test'),
+      appBar: const AppBarIthea('Article'),
       body: ListView(children: [
         const SizedBox(height: 45),
         Padding(
-          padding:const EdgeInsets.only(left: 20),
+          padding: const EdgeInsets.only(left: 20),
           child: Center(
             child: Text(
               teaname,
@@ -53,9 +58,11 @@ class ArticleDetail extends StatelessWidget {
             width: MediaQuery.of(context).size.width - 50.0,
             child: Text(
               'Description',
-              style: GoogleFonts.getFont('Vidaloka',
-                  fontSize: 25  ,
-                  fontWeight: FontWeight.bold,),
+              style: GoogleFonts.getFont(
+                'Vidaloka',
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ),
@@ -65,14 +72,14 @@ class ArticleDetail extends StatelessWidget {
             width: MediaQuery.of(context).size.width - 50.0,
             child: Text(
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget sodales diam velit dapibus viverra.',
-                style: GoogleFonts.getFont('Vidaloka',color: const Color(0xFFB4B8B9))),
+                style: GoogleFonts.getFont('Vidaloka',
+                    color: const Color(0xFFB4B8B9))),
           ),
         ),
         const SizedBox(height: 30),
         Center(
           child: InkWell(
-            onTap: () {
-            },
+            onTap: () => article.addArticle(),
             child: Container(
               width: MediaQuery.of(context).size.width - 50.0,
               height: 50,
@@ -99,5 +106,29 @@ class ArticleDetail extends StatelessWidget {
         ),
       ]),
     );
+  }
+}
+
+class Article {
+  Article(this.name, this.price, this.image, this.isFavourite);
+
+  final String name;
+  final double price;
+  final String image;
+  final bool isFavourite;
+
+  CollectionReference articles =
+      FirebaseFirestore.instance.collection('articles');
+
+  Future<void> addArticle() {
+    return articles
+        .add({
+          'name': name,
+          'price': price,
+          'image': image,
+          'isFavourite': isFavourite,
+        })
+        .then((value) => print('Article Added'))
+        .catchError((error) => print('failed to add Article: $error'));
   }
 }
