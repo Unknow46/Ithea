@@ -114,8 +114,8 @@ class NavigationDrawer extends StatelessWidget {
          const Padding(padding: EdgeInsets.only(top: 40),
          child:  Align(
            child: CustomTextStyle('v 1.0.0', FontWeight.normal, 14),
+          ),
          ),
-         )
         ],
       ),
     );
