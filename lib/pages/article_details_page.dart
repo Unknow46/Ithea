@@ -1,6 +1,10 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ithea/widgets/app_bar_ithea.dart';
 
@@ -8,9 +12,8 @@ class ArticleDetail extends StatelessWidget {
   ArticleDetail({Key key, this.assetPath, this.teaprice, this.teaname})
       : super(key: key);
 
-
   FirebaseFirestore firestore = FirebaseFirestore.instance;
-  Article article = Article('Green tea', 20.5, 'logo.png', false);
+  Article article = Article('Green tea', 20.5, 'Logo.png', false);
 
   final String assetPath, teaprice, teaname;
   @override
@@ -32,7 +35,7 @@ class ArticleDetail extends StatelessWidget {
         const SizedBox(height: 85),
         Hero(
             tag: assetPath,
-            child: Image.asset(assetPath,
+            child: Image.memory(base64.decode(assetPath),
                 height: 150, width: 100, fit: BoxFit.contain)),
         const SizedBox(height: 20),
         Padding(
@@ -117,18 +120,27 @@ class Article {
   final String image;
   final bool isFavourite;
 
-  CollectionReference articles =
-      FirebaseFirestore.instance.collection('articles');
+  CollectionReference articles = FirebaseFirestore.instance.collection('articles');
 
-  Future<void> addArticle() {
+  Future<String> imageToString() async {
+    ByteData bytes = await rootBundle.load('assets/images/teaPic.png');
+    var buffer = bytes.buffer;
+    String image = base64.encode(Uint8List.view(buffer));
+    return image;
+  }
+
+  Future<void> addArticle() async {
     return articles
         .add({
           'name': name,
           'price': price,
-          'image': image,
+          'image': await imageToString(),
           'isFavourite': isFavourite,
         })
         .then((value) => print('Article Added'))
         .catchError((error) => print('failed to add Article: $error'));
   }
+
+
+
 }
