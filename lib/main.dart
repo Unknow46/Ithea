@@ -5,7 +5,6 @@ import 'package:ithea/pages/article_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ithea/pages/authentication/landing_screen.dart';
 import 'package:ithea/pages/authentication/login.dart';
-import 'package:ithea/pages/authentication/landing_screen.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +24,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const ArticlePage(),
+      home: ArticlePage(),
     );
   }
 }
