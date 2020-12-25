@@ -237,6 +237,15 @@ class CreateAccountScreen extends StatelessWidget {
       final currentUser = FirebaseAuth.instance.currentUser;
       assert(user.uid == currentUser.uid);
 
+      final client = Client(
+        authResult.user.displayName,
+        authResult.user.email,
+        authResult.user.emailVerified,
+        authResult.user.photoURL,
+        authResult.user.uid,
+      );
+      await Firestore.instance.insertUserDocument(client, authResult.user.uid);
+
       print('signInWithGoogle succeeded: $user');
 
       await Navigator.pushReplacement(
