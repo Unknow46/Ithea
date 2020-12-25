@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:ithea/data/dataSources/firestoreDataSources/firestore.dart';
+import 'package:ithea/data/entities/client.dart';
+import 'package:ithea/globals.dart';
 import 'package:ithea/ressources/dark_colors.dart';
 import 'package:ithea/pages/authentication/login.dart';
 import 'package:ithea/pages/home/home_screen.dart';
 import 'package:ithea/widgets/auth_form.dart';
 import 'package:ithea/widgets/custom_dialog.dart';
-
-import '../../data/entities/client.dart';
-import '../../globals.dart' as globals;
 
 void main() => runApp(CreateAccountScreen());
 
@@ -98,7 +98,7 @@ class CreateAccountScreen extends StatelessWidget {
                         RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)
                         ),
-                        onPressed: () {print(globals.isLoggedIn);},
+                        onPressed: () {},
                       ),
                       SignInButton(
                         Buttons.Google,
@@ -170,9 +170,17 @@ class CreateAccountScreen extends StatelessWidget {
         email: authForm.getEmailText(),
         password: authForm.getPasswordText(),
       );
-
+      final client = Client(
+          authForm.getPseudoText(),
+          authResult.user.email,
+          authResult.user.emailVerified,
+          authResult.user.photoURL,
+          authResult.user.uid,
+      );
+      await Firestore.instance.insertUserDocument(client, authResult.user.uid);
       await Navigator.pushReplacement(
           context,
+          // ignore: inference_failure_on_instance_creation
           MaterialPageRoute(
               builder: (BuildContext context) => const HomeScreen()
           )

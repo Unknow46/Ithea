@@ -1,5 +1,6 @@
 class Client {
 
+  // ignore: avoid_positional_boolean_parameters
   Client(this.displayName, this.email,this.emailVerified,this.photoURL,this.uid);
 
   String displayName;
@@ -8,6 +9,7 @@ class Client {
   String photoURL;
   String uid;
 
+  // ignore: sort_constructors_first
   Client.fromJson(Map<String, dynamic> json) {
     displayName = json['displayName'];
     email = json['email'];
