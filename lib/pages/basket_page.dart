@@ -7,6 +7,7 @@ import 'package:ithea/widgets/card_article_selected.dart';
 import 'package:ithea/widgets/navigation_drawer.dart';
 import 'package:ithea/widgets/text_style.dart';
 
+
 class Basket extends StatefulWidget {
 
   const Basket({Key key}):super(key: key);
@@ -16,18 +17,19 @@ class Basket extends StatefulWidget {
 }
 
 class _BasketState extends State<Basket> {
+
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
           appBar:  const AppBarIthea('Panier'),
           drawer:  const NavigationDrawer(),
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.black,
           body: Stack(
             children: <Widget>[
                   Column(
-                    children: const <Widget>[
-                       CardArticle('AquaSummer', '4.00€',  '100', '1', 'assets/images/AquaSummer.png'),
-                       Divider(),
+                    children:  const <Widget>[
+                         CardArticle('AquaSummer', '4.00€',  '100', '1', 'assets/images/AquaSummer.png'),
+                         Divider()
                     ],
                   ),
                   Column(
@@ -61,4 +63,5 @@ class _BasketState extends State<Basket> {
           )
     );
   }
+
 }

@@ -1,3 +1,4 @@
+import 'package:dynamic_theme/dynamic_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -5,14 +6,21 @@ import 'package:ithea/widgets/create_drawer_body.dart';
 import 'package:ithea/widgets/text_style.dart';
 import 'create_drawer_header.dart';
 
-class NavigationDrawer extends StatelessWidget {
+class NavigationDrawer extends StatelessWidget  {
   const NavigationDrawer({Key key}):super(key:key);
+
+  void themeSwitch(BuildContext context) {
+    DynamicTheme.of(context).setBrightness(
+        Theme.of(context).brightness == Brightness.dark
+            ? Brightness.light
+            : Brightness.dark);
+  }
+
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
-
         padding: EdgeInsets.zero,
         children: <Widget>[
           createDrawerHeader(),
@@ -114,10 +122,29 @@ class NavigationDrawer extends StatelessWidget {
          const Padding(padding: EdgeInsets.only(top: 40),
          child:  Align(
            child: CustomTextStyle('v 1.0.0', FontWeight.normal, 14),
+          ),
          ),
-         )
+
+           Padding(padding: const EdgeInsets.only(top: 40),
+            child:  Align(
+              child: FlatButton(onPressed: () {
+                themeSwitch(context);
+              },
+                color: Colors.green,
+                child: _darkMode(context),
+              )
+              )
+            ),
         ],
       ),
     );
+  }
+
+  Widget _darkMode(BuildContext context){
+    if (Theme.of(context).brightness == Brightness.dark) {
+      return const CustomTextStyle('Thème clair', FontWeight.bold, 18);
+    } else {
+      return const CustomTextStyle('Thème sombre', FontWeight.bold, 18);
+    }
   }
 }

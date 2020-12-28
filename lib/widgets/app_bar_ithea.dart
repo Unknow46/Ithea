@@ -14,41 +14,25 @@ class AppBarIthea extends StatelessWidget implements PreferredSizeWidget {
       preferredSize: preferredSize,
         child: Stack(
           children: <Widget>[
-            Align(
-              child: Image.asset('assets/images/Logo.png'),
-            ),
             Row(
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.only(bottom:70),
+                  padding: const EdgeInsets.only(bottom:25),
                   child: Align(
                       alignment: Alignment.bottomLeft,
                       child: GestureDetector(
                           onTap: () {
                              Navigator.pop(context);
                           },
-                          child: const Icon(Icons.chevron_left)
+                          child: const Icon(Icons.chevron_left, size: 30,)
                       )
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 74),
-                  child: Align(
-                    alignment: Alignment.bottomLeft,
-                    child: GestureDetector(
-                        onTap: () {
-                        Navigator.pop(context);
-                        },
-                        child: const CustomTextStyle('Retour', FontWeight.bold, 13),
-                    ),
                   ),
                 ),
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 10, bottom: 20),
+              padding: const EdgeInsets.only(top: 25),
               child: Align(
-                alignment: Alignment.bottomLeft,
                 child: CustomTextStyle(title, FontWeight.bold, 30),
               ),
             ),
@@ -92,5 +76,5 @@ class AppBarIthea extends StatelessWidget implements PreferredSizeWidget {
     );
   }
   @override
-  Size get preferredSize => const Size.fromHeight(120);
+  Size get preferredSize => const Size.fromHeight(80);
 }

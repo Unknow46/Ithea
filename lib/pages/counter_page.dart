@@ -19,7 +19,8 @@ class CounterPage extends StatelessWidget {
           Scaffold(
           // appBar: const TopNavigation('Test'),
               appBar:  const AppBarIthea('Test'),
-            drawer: const NavigationDrawer(),
+              drawer: const NavigationDrawer(),
+
               body: Center(
               child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -72,7 +73,7 @@ class CounterPage extends StatelessWidget {
                     label: const Text('Favoris'),
                   ),
                 ],
-              )
+              ),
               ],
               )
           ),
