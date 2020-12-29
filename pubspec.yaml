@@ -62,7 +62,6 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/landing.jpg
-    - assets/images/Logo.png
     - assets/images/greenLogo.png
     - assets/images/vector.png
     - assets/images/

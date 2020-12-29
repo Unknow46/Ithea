@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:ithea/pages/article_page.dart';
-
+//mai
 // ignore: avoid_void_async
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
