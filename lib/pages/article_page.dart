@@ -12,6 +12,8 @@ CollectionReference articles =
     FirebaseFirestore.instance.collection('articles');
 
 class ArticlePage extends StatefulWidget {
+  const ArticlePage({Key key})
+      : super(key: key);
   @override
   _ArticlePageState createState() => _ArticlePageState();
 }
@@ -25,8 +27,9 @@ class _ArticlePageState extends State<ArticlePage> {
     super.initState();
   }
 
+  // ignore: inference_failure_on_function_return_type, always_declare_return_types
   getArticles() async {
-    final QuerySnapshot snapshot = await articles.get();
+    final snapshot = await articles.get();
     setState(() {
       articlesList = snapshot.docs;
     });
