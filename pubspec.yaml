@@ -40,6 +40,7 @@ dependencies:
   dots_indicator: ^1.2.0
   dynamic_theme: ^1.0.1
   connectivity: ^2.0.2
+  google_fonts: ^1.1.1
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.3
