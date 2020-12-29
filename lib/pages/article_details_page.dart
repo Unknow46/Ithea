@@ -6,8 +6,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ithea/data/entities/article.dart';
 import 'package:ithea/widgets/app_bar_ithea.dart';
 
+// ignore: must_be_immutable
 class ArticleDetail extends StatelessWidget {
   ArticleDetail({Key key, this.assetPath, this.teaprice, this.teaname})
       : super(key: key);
@@ -112,35 +114,4 @@ class ArticleDetail extends StatelessWidget {
   }
 }
 
-class Article {
-  Article(this.name, this.price, this.image, this.isFavourite);
 
-  final String name;
-  final double price;
-  final String image;
-  final bool isFavourite;
-
-  CollectionReference articles = FirebaseFirestore.instance.collection('articles');
-
-  Future<String> imageToString() async {
-    ByteData bytes = await rootBundle.load('assets/images/teaPic.png');
-    var buffer = bytes.buffer;
-    String image = base64.encode(Uint8List.view(buffer));
-    return image;
-  }
-
-  Future<void> addArticle() async {
-    return articles
-        .add({
-          'name': name,
-          'price': price,
-          'image': await imageToString(),
-          'isFavourite': isFavourite,
-        })
-        .then((value) => print('Article Added'))
-        .catchError((error) => print('failed to add Article: $error'));
-  }
-
-
-
-}
