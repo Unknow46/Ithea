@@ -55,4 +55,6 @@ workflows:
   flutter:
     jobs:
       - lint
-      - test
+      - test:
+          requires:
+            - lint
