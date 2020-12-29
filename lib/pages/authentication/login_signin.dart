@@ -77,6 +77,7 @@ class LoginSignin extends StatelessWidget {
                     height: 40,
                     child:
                     RaisedButton(onPressed: () {
+                      // ignore: inference_failure_on_instance_creation
                       Navigator.push(context,MaterialPageRoute(builder: (context) => Login()),
                       );
                     },

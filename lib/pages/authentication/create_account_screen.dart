@@ -7,7 +7,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:ithea/data/dataSources/firestoreDataSources/firestore.dart';
 import 'package:ithea/data/entities/client.dart';
-import 'package:ithea/globals.dart';
 import 'package:ithea/ressources/dark_colors.dart';
 import 'package:ithea/pages/authentication/login.dart';
 import 'package:ithea/pages/home/home_screen.dart';
@@ -16,6 +15,7 @@ import 'package:ithea/widgets/custom_dialog.dart';
 
 void main() => runApp(CreateAccountScreen());
 
+// ignore: use_key_in_widget_constructors, must_be_immutable
 class CreateAccountScreen extends StatelessWidget {
   var authForm = AuthForm(isVisible: true);
 
@@ -192,6 +192,7 @@ class CreateAccountScreen extends StatelessWidget {
         showAlert(context, 'Account already exists for that email');
       }
     } catch (e) {
+      // ignore: avoid_print
       print(e);
     }
   }
@@ -246,10 +247,12 @@ class CreateAccountScreen extends StatelessWidget {
       );
       await Firestore.instance.insertUserDocument(client, authResult.user.uid);
 
+      // ignore: avoid_print
       print('signInWithGoogle succeeded: $user');
 
       await Navigator.pushReplacement(
           context,
+          // ignore: inference_failure_on_instance_creation
           MaterialPageRoute(
               builder: (BuildContext context) => const HomeScreen()
           )

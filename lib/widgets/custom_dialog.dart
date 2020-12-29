@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ithea/ressources/dark_colors.dart';
 
+// ignore: must_be_immutable
 class CustomDialog extends StatelessWidget {
+  // ignore: use_key_in_widget_constructors
   CustomDialog({@required this.icon, @required this.message, @required this.title});
 
   IconData icon;

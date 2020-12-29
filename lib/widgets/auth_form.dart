@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:ithea/ressources/dark_colors.dart';
 
+// ignore: must_be_immutable
 class AuthForm extends StatelessWidget {
+  // ignore: use_key_in_widget_constructors
   AuthForm({@required this.isVisible});
   bool isVisible;
 

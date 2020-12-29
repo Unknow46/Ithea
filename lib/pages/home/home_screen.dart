@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:ithea/data/dataSources/firestoreDataSources/firestore.dart';
 
 void main() => runApp(const HomeScreen());
 
@@ -9,6 +8,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user =  FirebaseAuth.instance.currentUser;
+    // ignore: avoid_print
     print(user);
     return MaterialApp(
       title: 'Welcome to Flutter',

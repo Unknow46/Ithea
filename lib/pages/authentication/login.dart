@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_view.dart';
@@ -13,6 +12,7 @@ import 'package:ithea/widgets/custom_dialog.dart';
 
 void main() => runApp(Login());
 
+// ignore: must_be_immutable, use_key_in_widget_constructors
 class Login extends StatelessWidget {
   var authForm = AuthForm(isVisible: false);
   // const Login({Key key}) : super(key: key);
@@ -147,6 +147,7 @@ class Login extends StatelessWidget {
                               onTap: () {
                                 Navigator.push(
                                     context,
+                                    // ignore: inference_failure_on_instance_creation
                                     MaterialPageRoute(
                                         builder: (context) =>
                                             CreateAccountScreen()));
@@ -197,13 +198,9 @@ class Login extends StatelessWidget {
       return;
     }
     try {
-      final userCredential =
-          await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
       await Navigator.pushReplacement(
           context,
+          // ignore: inference_failure_on_instance_creation
           MaterialPageRoute(
               builder: (BuildContext context) => const HomeScreen()));
     } on FirebaseAuthException catch (e) {

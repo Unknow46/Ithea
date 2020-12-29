@@ -19,12 +19,12 @@ class Client {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['displayName'] = this.displayName;
-    data['email'] = this.email;
-    data['emailVerified'] = this.emailVerified;
-    data['photoURL'] = this.photoURL;
-    data['uid'] = this.uid;
+    final data = <String, dynamic>{};
+    data['displayName'] = displayName;
+    data['email'] = email;
+    data['emailVerified'] = emailVerified;
+    data['photoURL'] = photoURL;
+    data['uid'] = uid;
     return data;
   }
 }

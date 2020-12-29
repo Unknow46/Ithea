@@ -42,7 +42,9 @@ class _LandingScreenState extends State<LandingScreen> {
         });
       }
       else {
+        // ignore: avoid_print
         print(user);
+        // ignore: inference_failure_on_instance_creation
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => const HomeScreen()));
       }
     });
@@ -109,6 +111,7 @@ class _LandingScreenState extends State<LandingScreen> {
                       height: 45,
                       child:
                       RaisedButton(onPressed: () {
+                        // ignore: inference_failure_on_instance_creation
                         Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => CreateAccountScreen()));
                       },
                         color: darkColors.breakedGreen,
@@ -131,6 +134,7 @@ class _LandingScreenState extends State<LandingScreen> {
                       height: 45,
                       child:
                       RaisedButton(onPressed: () {
+                        // ignore: inference_failure_on_instance_creation
                         Navigator.push(context,MaterialPageRoute(builder: (context) => Login()));
                       },
                         color: const Color.fromRGBO(0,0,0,0),
