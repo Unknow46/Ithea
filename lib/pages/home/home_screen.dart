@@ -12,10 +12,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  var title = '';
-  var type = '';
-  var value = '';
-  var date = '';
+  var title = 'Nan';
+  var type = 'Nan';
+  var value = 'Nan';
+  var date = 'Nan';
 
   @override
   Widget build(BuildContext context) {
@@ -111,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<void> updateCard(BuildContext context) async {
     final promotions = FirebaseFirestore.instance.collection('promotions').doc('UoIt7VsnnNH3cg1OjntB');
     promotions.snapshots().listen((snapshot) {
-      if (snapshot.data().isNotEmpty){
+      if (snapshot.exists){
         setState(() {
           title = snapshot.data()['title'];
           type = snapshot.data()['type'];
