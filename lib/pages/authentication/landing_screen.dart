@@ -13,7 +13,6 @@ class LandingScreen extends StatefulWidget {
   _LandingScreenState createState() => _LandingScreenState();
 }
 
-
 class _LandingScreenState extends State<LandingScreen> {
   final splashDelay = 4;
   var isVisible = false;

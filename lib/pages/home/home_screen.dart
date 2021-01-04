@@ -1,17 +1,27 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ithea/ressources/dark_colors.dart';
 import 'package:ithea/widgets/app_bar_ithea.dart';
 import 'package:ithea/widgets/navigation_drawer.dart';
 
-void main() => runApp(const HomeScreen());
-
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key key}) : super(key: key);
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  var title = '';
+  var type = '';
+  var value = '';
+  var date = '';
+
   @override
   Widget build(BuildContext context) {
     final user =  FirebaseAuth.instance.currentUser;
     final userName = user.displayName;
+    updateCard(context);
     return
       Scaffold(
         appBar:  const AppBarIthea('IThea'),
@@ -32,7 +42,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 30,),
                 SizedBox(
-                  width: 340,
+                  width: 350,
                   height: 214,
                   child: DecoratedBox(
                     decoration: BoxDecoration(
@@ -45,15 +55,49 @@ class HomeScreen extends StatelessWidget {
                         const SizedBox(
                           height: 10,
                         ),
-                        const Center (
-                          child : Text('Privilege Sale' ,
-                              style: TextStyle(
+                        Center (
+                          child : Text(title ?? '',
+                              style: const TextStyle(
                                 fontFamily: 'Roboto',
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
                                 fontSize: 20,
                               )),
                         ),
+                        Padding (
+                          padding: const EdgeInsets.only(right: 240, top: 20),
+                          child : Text(value ?? '' ,
+                              style: const TextStyle(
+                                fontFamily: 'Roboto',
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                fontSize: 40,
+                              )),
+                        ),
+                        Padding (
+                          padding: const EdgeInsets.only(left: 10),
+                          child : Text(type ?? '' ,
+                              style: const TextStyle(
+                                fontFamily: 'Roboto',
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                fontSize: 27,
+                              )
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Center(
+                          child: Text(date ?? '' ,
+                              style: const TextStyle(
+                                fontFamily: 'Roboto',
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                fontSize: 15,
+                              )
+                          ),
+                        )
                       ],
                     ),
                   ),
@@ -64,4 +108,18 @@ class HomeScreen extends StatelessWidget {
         ),
       );
   }
+  Future<void> updateCard(BuildContext context) async {
+    final promotions = FirebaseFirestore.instance.collection('promotions').doc('UoIt7VsnnNH3cg1OjntB');
+    promotions.snapshots().listen((snapshot) {
+      if (snapshot.data().isNotEmpty){
+        setState(() {
+          title = snapshot.data()['title'];
+          type = snapshot.data()['type'];
+          value = snapshot.data()['value'];
+          date = snapshot.data()['promotionDate'];
+        });
+      }
+    });
+  }
 }
+
