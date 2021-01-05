@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:ithea/ressources/dark_colors.dart';
 import 'package:ithea/widgets/app_bar_ithea.dart';
 import 'package:ithea/widgets/navigation_drawer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key key}) : super(key: key);
@@ -97,11 +99,39 @@ class _HomeScreenState extends State<HomeScreen> {
                                 fontSize: 15,
                               )
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
                 ),
+                const SizedBox(
+                  height: 80,
+                ),
+                const SizedBox(
+                  height: 100,
+                ),
+                Text('Our Best Recipes' ,
+                  style: GoogleFonts.vidaloka(
+                      fontSize: 30,
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                //Image.asset('assets/images/recips.png'),
+                Material(
+                    child: InkWell(
+                      onTap: () {
+                        launchURL();
+                      },
+                      // ignore: avoid_unnecessary_containers
+                      child: Container(
+                        child: ClipRRect(
+                          child: Image.asset('assets/images/recips.png'),
+                        ),
+                      ),
+                    )
+                )
               ],
             ),
           ),
@@ -120,6 +150,15 @@ class _HomeScreenState extends State<HomeScreen> {
         });
       }
     });
+  }
+  Future<void> launchURL() async {
+    const url = 'https://www.palaisdesthes.com/fr/les-selections-du-palais/';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      // ignore: only_throw_errors
+      throw 'Could not launch $url';
+    }
   }
 }
 
