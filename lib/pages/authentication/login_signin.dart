@@ -39,7 +39,7 @@ class LoginSignin extends StatelessWidget {
                   child:Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Image.asset('assets/images/logo.png',
+                        Image.asset('assets/images/Logo.png',
                           height: 100,
                           width: 100,),
                         const SizedBox(height: 20,),
