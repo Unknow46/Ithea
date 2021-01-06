@@ -29,8 +29,8 @@ void main(){
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
                       const FlatButton(
-                          minWidth: 169,
-                          height: 45,
+                          //minWidth: 169,
+                          //height: 45,
                           disabledColor: Colors.green,
                           onPressed: null,
                           child: CustomTextStyle('Valider le panier', FontWeight.normal, 18, colors: Colors.white,)
