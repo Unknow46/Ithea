@@ -94,9 +94,9 @@ class _ArticlePageState extends State<ArticlePage> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   if (isFavourite)
-                    const Icon(Icons.favorite_outlined, color: Colors.red)
+                    const Icon(Icons.favorite, color: Colors.red)
                   else
-                    const Icon(Icons.favorite_outline, color: Colors.red)
+                    const Icon(Icons.favorite, color: Colors.red)
                 ],
               ),
             ),

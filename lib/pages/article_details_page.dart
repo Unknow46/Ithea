@@ -90,7 +90,7 @@ class ArticleDetail extends StatelessWidget {
               child:
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 const Icon(
-                  Icons.shopping_basket_outlined,
+                  Icons.shopping_basket,
                   color: Colors.white,
                 ),
                 const Padding(
