@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:ithea/ressources/dark_colors.dart';
 import 'package:ithea/widgets/app_bar_ithea.dart';
 import 'package:ithea/widgets/navigation_drawer.dart';
-import 'package:ithea/widgets/Custom_List.dart';
+import 'package:ithea/widgets/custom_list.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 

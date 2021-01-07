@@ -21,4 +21,9 @@ class Firestore {
     return users.doc(userID).get();
   }
 
+  Future<void> getArticles(String userID) async {
+    final users = FirebaseFirestore.instance.collection('Users');
+    return users.doc(userID).get();
+  }
+
 }
