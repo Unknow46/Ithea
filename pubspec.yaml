@@ -39,6 +39,7 @@ dependencies:
   carousel_slider: ^2.3.1
   dots_indicator: ^1.2.0
   dynamic_theme: ^1.0.1
+  url_launcher: ^5.7.6
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -65,6 +66,7 @@ flutter:
     - assets/images/logo.png
     - assets/images/greenLogo.png
     - assets/images/vector.png
+    - assets/images/recips.png
     - assets/images/
     - assets/lottie/
     - assets/images/AquaSummer.png
