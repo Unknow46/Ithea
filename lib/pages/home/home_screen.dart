@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:ithea/ressources/dark_colors.dart';
 import 'package:ithea/widgets/app_bar_ithea.dart';
 import 'package:ithea/widgets/navigation_drawer.dart';
+import 'package:ithea/widgets/Custom_List.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key key}) : super(key: key);
@@ -40,7 +41,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         fontSize: 18,
                       )),
                 ),
-                const SizedBox(height: 30,),
+                const SizedBox(height: 5,),
+
                 SizedBox(
                   width: 350,
                   height: 214,
@@ -102,12 +104,54 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
+
+                Container(
+                  height: 150,
+                  width: MediaQuery.of(context).size.width * 1,
+                  child: ListView(
+                    children: <Widget>[
+                      const Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: Text(
+                            'Our Products',
+                              style: TextStyle(
+                                fontFamily: 'Roboto',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                              )
+                          ),
+                      ),
+                      Mylist(['Aqua','Green','Tropical','Zen','Morning'])
+                    ],
+                  ),
+                ),
+                Container(
+                  height: 150,
+                  width: MediaQuery.of(context).size.width * 1,
+                  child: ListView(
+                    children: <Widget>[
+                      const Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Text(
+                            'Best Seller',
+                            style: TextStyle(
+                              fontFamily: 'Roboto',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            )
+                        ),
+                      ),
+                      Mylist(['Anastasia','HappyMind','Morning','Zen','Tropical'])
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
         ),
       );
   }
+
   Future<void> updateCard(BuildContext context) async {
     final promotions = FirebaseFirestore.instance.collection('promotions').doc('UoIt7VsnnNH3cg1OjntB');
     promotions.snapshots().listen((snapshot) {
@@ -122,4 +166,5 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 }
+
 

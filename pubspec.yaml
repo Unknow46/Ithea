@@ -67,7 +67,8 @@ flutter:
     - assets/images/vector.png
     - assets/images/
     - assets/lottie/
-
+    - assets/images/AquaSummer.png
+    - assets/images/TeaBox/
   # To add assets to your application, add an assets section, like this:
   #   - images/a_dot_ham.jpeg
 
