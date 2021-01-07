@@ -255,7 +255,7 @@ class CreateAccountScreen extends StatelessWidget {
           context,
           // ignore: inference_failure_on_instance_creation
           MaterialPageRoute(
-              builder: (BuildContext context) => HomeScreen()
+              builder: (BuildContext context) => const HomeScreen()
           )
       );
     } else {

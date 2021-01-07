@@ -24,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final user =  FirebaseAuth.instance.currentUser;
-    final userName = user.displayName;
+    final userName = user.displayName[0].toUpperCase()+ user.displayName.substring(1);
     updateCard(context);
     return
       Scaffold(
@@ -36,15 +36,15 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column (
               children: [
                 Padding (
-                  padding: const EdgeInsets.only(right: 260, top: 10),
-                  child :  Text('Welcome, \n $userName' ,
+                  padding: const EdgeInsets.only(right: 200, top: 10),
+                  child :  Text('Welcome, $userName' ,
                       style: const TextStyle(
                         fontFamily: 'Roboto',
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
                       )),
                 ),
-                const SizedBox(height: 5,),
+                const SizedBox(height: 20,),
 
                 SizedBox(
                   width: 350,
@@ -114,7 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: ListView(
                     children: <Widget>[
                       const Padding(
-                          padding: const EdgeInsets.all(20),
+                          padding: EdgeInsets.all(20),
                           child: Text(
                             'Our Products',
                               style: TextStyle(
@@ -124,6 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               )
                           ),
                       ),
+                      // ignore: prefer_const_literals_to_create_immutables
                       Mylist(['Aqua','Green','Tropical','Zen','Morning'])
                     ],
                   ),
@@ -161,7 +162,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: ListView(
                     children: <Widget>[
                       const Padding(
-                        padding: const EdgeInsets.all(20),
+                        padding: EdgeInsets.all(20),
                         child: Text(
                             'Best Seller',
                             style: TextStyle(
@@ -171,6 +172,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             )
                         ),
                       ),
+                      // ignore: prefer_const_literals_to_create_immutables
                       Mylist(['Anastasia','HappyMind','Morning','Zen','Tropical'])
                     ],
                   ),
