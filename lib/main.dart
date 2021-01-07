@@ -24,9 +24,9 @@ class MyApp extends StatelessWidget  {
         ),
         themedWidgetBuilder: (context, theme) {
           return MaterialApp(
-            title: 'Flutter Demo',
-            theme: theme,
-            home: const LandingScreen()
+              title: 'Flutter Demo',
+              theme: theme,
+              home: const LandingScreen()
           );
         }
     );
