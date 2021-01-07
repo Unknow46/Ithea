@@ -1,56 +1,79 @@
+import 'dart:convert';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:ithea/pages/article_details_page.dart';
 
+class Mylist extends StatefulWidget {
+  const Mylist({Key key}) : super(key: key);
+  @override
+  _MylistState createState() => _MylistState();
+}
 // ignore: must_be_immutable
-class Mylist extends StatelessWidget {
-  List <String> itemList;
-
+class _MylistState extends State<Mylist> {
+   var itemList = [];
+   CollectionReference articles = FirebaseFirestore.instance.collection('articles');
+   List<dynamic> articlesList = [];
+   @override
+   void initState() {
+     getArticles();
+     super.initState();
+   }
   // ignore: inference_failure_on_untyped_parameter, sort_constructors_first, use_key_in_widget_constructors
-  Mylist(itemList){
-    this.itemList= itemList;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 70,
+      height: 130,
       child: ListView(
         scrollDirection: Axis.horizontal,
-        children: [
-          for(var item in itemList)
-          MyListView(
-            img_location: 'assets/images/TeaBox/$item.png' ,
-            img_caption: item
-          ),
-        ],
+        children: articlesList.map(
+                (article) => MyListView(name: article['name'].toString(),image: article['image'], price: article['price'].toString())).toList(),
       ),
     );
   }
+   // ignore: inference_failure_on_function_return_type
+   getArticles() async {
+     final snapshot = await articles.get();
+     setState(() {
+       articlesList = snapshot.docs;
+     });
+   }
 }
 
 class MyListView extends StatelessWidget{
+  final String image;
+  final String name;
+  final String price;
 
-  // ignore: non_constant_identifier_names
-  final String img_location;
-  // ignore: non_constant_identifier_names
-  final String img_caption;
-
-  // ignore: non_constant_identifier_names, sort_constructors_first, use_key_in_widget_constructors
-  const MyListView({this.img_location, this.img_caption});
+  // ignore: sort_constructors_first
+  const MyListView({this.image, this.name, this.price});
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 100,
+      width: 120,
       child: InkWell(
-        onTap: (){},
+        onTap: (){
+          Navigator.of(context).push(MaterialPageRoute<dynamic>(
+              builder: (context) => ArticleDetail(
+                assetPath: image,
+                teaprice: price,
+                teaname: name,
+              )));
+        },
         child: ListTile(
-          title: Image.asset(img_location),
+          title: Container(
+            height: 70,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: MemoryImage(base64.decode(image)),
+              )),
+          ),
           subtitle: Container(
-            alignment: Alignment.topCenter,
-            child: Text(img_caption,style: const TextStyle(
+              alignment: Alignment.topCenter,
+            child: Text(name,style: const TextStyle(
               fontFamily: 'Roboto',
               fontWeight: FontWeight.bold,
               color: Colors.black,
-              fontSize: 12,
+              fontSize: 14,
             ))),
         ),
       ),

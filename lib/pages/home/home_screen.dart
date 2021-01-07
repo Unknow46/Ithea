@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ithea/data/entities/article.dart';
 import 'package:ithea/ressources/dark_colors.dart';
 import 'package:ithea/widgets/app_bar_ithea.dart';
 import 'package:ithea/widgets/navigation_drawer.dart';
@@ -20,6 +21,12 @@ class _HomeScreenState extends State<HomeScreen> {
   var type = 'Nan';
   var value = 'Nan';
   var date = 'Nan';
+  Future<List<Article>> articles;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -112,6 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 150,
                   width: MediaQuery.of(context).size.width * 1,
                   child: ListView(
+                    // ignore: prefer_const_literals_to_create_immutables
                     children: <Widget>[
                       const Padding(
                           padding: EdgeInsets.all(20),
@@ -124,14 +132,13 @@ class _HomeScreenState extends State<HomeScreen> {
                               )
                           ),
                       ),
-                      // ignore: prefer_const_literals_to_create_immutables
-                      Mylist(['Aqua','Green','Tropical','Zen','Morning'])
+                      const Mylist()
                     ],
                   ),
                 ),
 
                 const SizedBox(
-                  height: 20,
+                  height: 25,
                 ),
                 Text('Our Best Recipes' ,
                   style: GoogleFonts.vidaloka(
@@ -155,11 +162,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     )
                 ),
-                const SizedBox(height: 10,),
+
+                const SizedBox(height: 20,),
                 Container(
-                  height: 150,
+                  height: 200,
                   width: MediaQuery.of(context).size.width * 1,
                   child: ListView(
+                    // ignore: prefer_const_literals_to_create_immutables
                     children: <Widget>[
                       const Padding(
                         padding: EdgeInsets.all(20),
@@ -172,8 +181,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             )
                         ),
                       ),
-                      // ignore: prefer_const_literals_to_create_immutables
-                      Mylist(['Anastasia','HappyMind','Morning','Zen','Tropical'])
+                      const Mylist()
                     ],
                   ),
                 ),
