@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -20,10 +21,12 @@ class ArticlePage extends StatefulWidget {
 
 class _ArticlePageState extends State<ArticlePage> {
   List<dynamic> articlesList = [];
+  dynamic user;
 
   @override
   void initState() {
     getArticles();
+    getUser();
     super.initState();
   }
 
@@ -33,6 +36,13 @@ class _ArticlePageState extends State<ArticlePage> {
     setState(() {
       articlesList = snapshot.docs;
     });
+  }
+
+  Future<dynamic> getUser() async {
+    setState(() {
+      user =  FirebaseAuth.instance.currentUser;
+    });
+    return user;
   }
 
   @override
@@ -74,6 +84,7 @@ class _ArticlePageState extends State<ArticlePage> {
                     assetPath: imgpath,
                     teaprice: price,
                     teaname: name,
+                    uid: user.uid,
                   )));
         },
         child: Container(
