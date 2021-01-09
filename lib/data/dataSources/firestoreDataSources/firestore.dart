@@ -20,5 +20,4 @@ class Firestore {
     final users = FirebaseFirestore.instance.collection('Users');
     return users.doc(userID).get();
   }
-
 }

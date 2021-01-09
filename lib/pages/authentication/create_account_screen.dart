@@ -7,7 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:ithea/data/dataSources/firestoreDataSources/firestore.dart';
 import 'package:ithea/data/entities/client.dart';
-import 'package:ithea/pages/counter_page.dart';
+import 'package:ithea/pages/home/home_screen.dart';
 import 'package:ithea/ressources/dark_colors.dart';
 import 'package:ithea/pages/authentication/login.dart';
 import 'package:ithea/widgets/auth_form.dart';
@@ -182,7 +182,7 @@ class CreateAccountScreen extends StatelessWidget {
           context,
           // ignore: inference_failure_on_instance_creation
           MaterialPageRoute(
-              builder: (BuildContext context) => CounterPage()
+              builder: (BuildContext context) => const HomeScreen()
           )
       );
     } on FirebaseAuthException catch (e) {
@@ -254,7 +254,7 @@ class CreateAccountScreen extends StatelessWidget {
           context,
           // ignore: inference_failure_on_instance_creation
           MaterialPageRoute(
-              builder: (BuildContext context) => CounterPage()
+              builder: (BuildContext context) => const HomeScreen()
           )
       );
     } else {

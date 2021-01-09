@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_view.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:ithea/pages/counter_page.dart';
+import 'package:ithea/pages/home/home_screen.dart';
 import 'package:ithea/ressources/dark_colors.dart';
 import 'package:ithea/pages/authentication/create_account_screen.dart';
 import 'package:ithea/widgets/auth_form.dart';
@@ -113,7 +113,9 @@ class Login extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            GoogleConnexion(context);
+                          },
                         ),
                         const SizedBox(
                           height: 5,
@@ -198,11 +200,17 @@ class Login extends StatelessWidget {
       return;
     }
     try {
+      final userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: email,
+          password: password,
+      );
+      // ignore: avoid_print
+      print(userCredential);
       await Navigator.pushReplacement(
           context,
           // ignore: inference_failure_on_instance_creation
           MaterialPageRoute(
-              builder: (BuildContext context) => CounterPage()));
+              builder: (BuildContext context) => const HomeScreen()));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         await showDialog(
@@ -224,5 +232,13 @@ class Login extends StatelessWidget {
         );
       }
     }
+  }
+  // ignore: non_constant_identifier_names
+  Future<void> GoogleConnexion(BuildContext context) async {
+    await Navigator.pushReplacement(
+        context,
+        // ignore: inference_failure_on_instance_creation
+        MaterialPageRoute(
+            builder: (BuildContext context) => const HomeScreen()));
   }
 }
