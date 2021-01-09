@@ -82,7 +82,7 @@ class _LandingScreenState extends State<LandingScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
 
-                        Image.asset('assets/images/Logo.png',
+                        Image.asset('assets/images/logo.png',
                           height: 100,
                           width: 100,),
 

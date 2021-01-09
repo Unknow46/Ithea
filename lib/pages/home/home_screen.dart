@@ -33,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final user =  FirebaseAuth.instance.currentUser;
     var userName = '';
     if (user != null && (user.displayName != null)) {
-       userName = user.displayName[0].toUpperCase()+ user.displayName.substring(1);
+       userName = user.displayName;
     }
     updateCard(context);
     return

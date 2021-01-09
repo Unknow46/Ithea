@@ -4,18 +4,18 @@ import 'package:flutter_test/flutter_test.dart';
 void main () {
   test('AssetImage from package', () {
     const image = AssetImage(
-      'assets/images/Logo.png',
+      'assets/images/logo.png',
       package: 'test_package',
     );
-    expect(image.keyName, 'packages/test_package/assets/images/Logo.png');
+    expect(image.keyName, 'packages/test_package/assets/images/logo.png');
   });
   test('ExactAssetImage from package', () {
     const image = ExactAssetImage(
-      'assets/images/Logo.png',
+      'assets/images/logo.png',
       scale: 1.5,
       package: 'test_package',
     );
-    expect(image.keyName, 'packages/test_package/assets/images/Logo.png');
+    expect(image.keyName, 'packages/test_package/assets/images/logo.png');
   });
 
   test('AssetImage from package', () {
