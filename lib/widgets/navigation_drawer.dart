@@ -2,6 +2,10 @@ import 'package:dynamic_theme/dynamic_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:ithea/pages/article_page.dart';
+import 'package:ithea/pages/basket_page.dart';
+import 'package:ithea/pages/favorite_page.dart';
+import 'package:ithea/pages/home/home_screen.dart';
 import 'package:ithea/widgets/create_drawer_body.dart';
 import 'package:ithea/widgets/text_style.dart';
 import 'create_drawer_header.dart';
@@ -30,7 +34,11 @@ class NavigationDrawer extends StatelessWidget  {
                 icon: Icons.home,
                 text: 'Home',
               onTap: () {
-                  //TODO Navigation to home page
+                Navigator.push(
+                  context,
+                  MaterialPageRoute<dynamic>(
+                      builder: (context) => const HomeScreen()),
+                );
               }
             ),
           ),
@@ -40,7 +48,11 @@ class NavigationDrawer extends StatelessWidget  {
                 icon: Icons.shop,
                 text: 'Boutiques',
                 onTap: () {
-                  //TODO Navigation to shopping page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute<dynamic>(
+                        builder: (context) => const ArticlePage()),
+                  );
                 }
             ),
           ),
@@ -50,7 +62,11 @@ class NavigationDrawer extends StatelessWidget  {
                 icon: Icons.shopping_basket,
                 text: 'Panier',
                 onTap: () {
-                  //TODO Navigation to basket page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute<dynamic>(
+                        builder: (context) => const Basket()),
+                  );
                 }
             ),
           ),
@@ -60,7 +76,11 @@ class NavigationDrawer extends StatelessWidget  {
                 icon: Icons.favorite,
                 text: 'Favoris',
                 onTap: () {
-                  //TODO Navigation to favorite page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute<dynamic>(
+                        builder: (context) => const Favorite()),
+                  );
                 }
             ),
           ),

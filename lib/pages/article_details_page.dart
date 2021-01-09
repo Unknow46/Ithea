@@ -1,21 +1,20 @@
 import 'dart:convert';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:ithea/data/entities/article.dart';
+import 'package:ithea/data/dataSources/firestoreDataSources/firestore.dart';
 import 'package:ithea/widgets/app_bar_ithea.dart';
+import '../globals.dart';
 
 // ignore: must_be_immutable
 class ArticleDetail extends StatelessWidget {
-  ArticleDetail({Key key, this.assetPath, this.teaprice, this.teaname})
+  ArticleDetail({Key key, this.id, this.assetPath, this.teaprice, this.teaname})
       : super(key: key);
 
-  FirebaseFirestore firestore = FirebaseFirestore.instance;
-  Article article = Article('Green tea', 20.5, 'Logo.png', false);
+  Firestore firestore = Firestore.instance;
+  final String assetPath, teaprice, teaname, id;
 
-  final String assetPath, teaprice, teaname;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +50,13 @@ class ArticleDetail extends StatelessWidget {
                 padding: EdgeInsets.only(left: 170),
                 child: Icon(Icons.share),
               ),
-              const Icon(CupertinoIcons.heart),
+              GestureDetector(
+                onTap: () {
+                  article.addFavorite(id);
+                  addingFavorite();
+                },
+                child: const Icon(CupertinoIcons.heart),
+              )
             ],
           ),
         ),
@@ -82,7 +87,7 @@ class ArticleDetail extends StatelessWidget {
         const SizedBox(height: 30),
         Center(
           child: InkWell(
-            onTap: () => article.addArticle(),
+            onTap: () => article.addArticle(id),
             child: Container(
               width: MediaQuery.of(context).size.width - 50.0,
               height: 50,
@@ -113,3 +118,6 @@ class ArticleDetail extends StatelessWidget {
 }
 
 
+Future<void> addingFavorite() async {
+  await Firestore.instance.insertFavoriteDocument(article, client.uid);
+}

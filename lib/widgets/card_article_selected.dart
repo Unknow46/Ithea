@@ -58,7 +58,12 @@ class CardArticle extends StatelessWidget {
     if (icon != null) {
       return Padding(
         padding: const EdgeInsets.only(left: 50),
-        child: Image.asset(icon),
+        child: GestureDetector(
+          onTap: () {
+
+          },
+          child: Image.asset(icon),
+        ),
       );
     }
     return Container();
