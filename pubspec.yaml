@@ -70,7 +70,7 @@ flutter:
     - assets/images/AquaSummer.png
     - assets/images/TeaBox/
     - assets/images/teaPic.png
-    - assets/images/logo.png
+    - assets/images/Logo.png
   # To add assets to your application, add an assets section, like this:
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -100,6 +100,6 @@ flutter:
   # see https://flutter.dev/custom-fonts/#from-packages
 
 flutter_icons:
-  image_path: "assets/images/logo.png"
+  image_path: "assets/images/Logo.png"
   android: true
   ios: true

@@ -13,7 +13,7 @@ class ArticleDetail extends StatelessWidget {
       : super(key: key);
 
   FirebaseFirestore firestore = FirebaseFirestore.instance;
-  Article article = Article('Green tea', 20.5, 'logo.png', false);
+  Article article = Article('Green tea', 20.5, 'Logo.png', false);
 
   final String assetPath, teaprice, teaname;
   @override

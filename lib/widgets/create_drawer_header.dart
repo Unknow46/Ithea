@@ -9,7 +9,7 @@ Widget createDrawerHeader() {
         Padding(
             padding: const EdgeInsets.only(top:5),
           child: Align(
-            child: Image.asset('assets/images/logo.png'),
+            child: Image.asset('assets/images/Logo.png'),
           ),
         ),
       ]));
