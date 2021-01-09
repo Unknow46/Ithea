@@ -30,7 +30,7 @@ class _MylistState extends State<Mylist> {
       ),
     );
   }
-   // ignore: inference_failure_on_function_return_type
+   // ignore: inference_failure_on_function_return_type, always_declare_return_types
    getArticles() async {
      final snapshot = await articles.get();
      setState(() {
@@ -44,7 +44,7 @@ class MyListView extends StatelessWidget{
   final String name;
   final String price;
 
-  // ignore: sort_constructors_first
+  // ignore: sort_constructors_first, use_key_in_widget_constructors
   const MyListView({this.image, this.name, this.price});
   @override
   Widget build(BuildContext context) {
