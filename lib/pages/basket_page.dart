@@ -2,6 +2,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:ithea/data/dataSources/firestoreDataSources/firestore.dart';
+import 'package:ithea/data/entities/article.dart';
+import 'package:ithea/globals.dart';
 import 'package:ithea/widgets/app_bar_ithea.dart';
 import 'package:ithea/widgets/card_article_selected.dart';
 import 'package:ithea/widgets/navigation_drawer.dart';
@@ -17,19 +20,35 @@ class Basket extends StatefulWidget {
 }
 
 class _BasketState extends State<Basket> {
+  Firestore firestore = Firestore.instance;
+  dynamic basket;
+  List<dynamic> listArticlesId;
+  List<dynamic> listArticles;
+
+  Future<void> getBasket() async {
+    return firestore.getBasketDocument(client.uid);
+  }
+
+
+  @override
+  void initState() {
+    basket = getBasket();
+    super.initState();
+  }
+
 
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
           appBar:  const AppBarIthea('Panier'),
           drawer:  const NavigationDrawer(),
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.white,
           body: Stack(
             children: <Widget>[
                   Column(
                     children:  const <Widget>[
-                         CardArticle('AquaSummer', '4.00€',  '100', '1', 'assets/images/AquaSummer.png'),
-                         Divider()
+                      CardArticle('AquaSummer', '4.00€',  '100', '1', 'assets/images/AquaSummer.png'),
+                      Divider()
                     ],
                   ),
                   Column(
@@ -40,11 +59,11 @@ class _BasketState extends State<Basket> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
-                           const FlatButton(
+                            const FlatButton(
                             //minWidth: 169,
                             //height: 45,
                             disabledColor: Colors.green,
-                            onPressed: null,
+                            onPressed: validateBasket,
                             child: CustomTextStyle('Valider le panier', FontWeight.normal, 18, colors: Colors.white,)
                           ),
                           Column(
@@ -64,4 +83,9 @@ class _BasketState extends State<Basket> {
     );
   }
 
+
+}
+
+Future<void> validateBasket() async {
+  await Firestore.instance.insertBasketDocument(article, client.uid);
 }
