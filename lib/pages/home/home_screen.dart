@@ -31,7 +31,10 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final user =  FirebaseAuth.instance.currentUser;
-    final userName = user.displayName[0].toUpperCase()+ user.displayName.substring(1);
+    var userName = '';
+    if (user != null && (user.displayName != null)) {
+       userName = user.displayName[0].toUpperCase()+ user.displayName.substring(1);
+    }
     updateCard(context);
     return
       Scaffold(
