@@ -26,36 +26,41 @@ class Basket extends StatefulWidget {
 
 class _BasketState extends State<Basket> {
   Future<List<String>> basketList;
-  List<dynamic> articleList = [];
+  Future<List<dynamic>> articleList;
   final user =  FirebaseAuth.instance.currentUser;
 
   @override
-  // ignore: avoid_void_async
   void initState() {
+    asyncMethod();
     super.initState();
-    basketList = getBasket();
-    getArticles(basketList);
   }
 
-  Future<List<String>> getBasket() async {
-    var currentBasket = <String>[];
-    await panier.doc(user.uid).get().then((doc) {
-      currentBasket= List<String>.from(doc['list_article']);
+  Future<void> asyncMethod() async {
+    setState(() {
+      basketList = getBasket();
+      articleList = getData(basketList);
     });
+  }
+  Future<List<dynamic>> getData(Future<List<String>> basketList) async {
+    final currentArticle = <dynamic>[];
+    await basketList.then((list) {
+      list.forEach((element) async {
+        final result = await articles.doc(element).get();
+         currentArticle.add(result);
+      });
+    });
+    return currentArticle;
+  }
+
+
+  Future<List<String>> getBasket()  async{
+    var currentBasket = <String>[];
+      await panier.doc(user.uid).get().then((doc) async {
+        currentBasket= List<String>.from(doc['list_article']);
+      });
     return currentBasket;
   }
 
-   // ignore: inference_failure_on_function_return_type, always_declare_return_types
-   getArticles(Future<List<String>> basketList) async {
-    await basketList.then((list) {
-      list.forEach((element) async {
-        final snapshot = await articles.doc(element).get();
-        setState(() {
-          articleList.add(snapshot);
-        });
-      });
-    });
-  }
 
 
   @override
@@ -67,12 +72,12 @@ class _BasketState extends State<Basket> {
           body: Stack(
             children: <Widget>[
                       ListView(
-                        children: articleList.map(
+                       /** children: articleList.map(
                                 (article) {
                                 CardArticle(article['name'], article['price'].toString(),'100','1',article['image']);
                                 const Divider();
                                 }).toList(),
-                      ),
+                      **/),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
