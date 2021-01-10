@@ -28,8 +28,19 @@ class Firestore {
   }
 
   Future<void> insertBasketDocument(Article article, String uid) async {
-  final basket = FirebaseFirestore.instance.collection('panier');
-  await basket.doc(uid).set(article.toJsonBasket());
+    final basket = FirebaseFirestore.instance.collection('panier');
+    await basket.doc(uid).get().then((doc) {
+      if (doc.exists) {
+        final currentBasket = List<String>.from(doc['list_article']);
+        final currentArticle = article.articleBasket.first;
+        currentBasket.add(currentArticle);
+        basket.doc(uid).update(<String, dynamic>{
+          'list_article': currentBasket
+        });
+      } else {
+        basket.doc(uid).set(article.toJsonBasket());
+      }
+    });
   }
 
   Future<void> getBasketDocument(String userId) async {
@@ -38,8 +49,19 @@ class Firestore {
   }
 
   Future<void> insertFavoriteDocument(Article article, String uid) async {
-    final basket = FirebaseFirestore.instance.collection('favoris');
-    await basket.doc(uid).set(article.toJsonBasket());
+    final favorite = FirebaseFirestore.instance.collection('favoris');
+    await favorite.doc(uid).get().then((doc) {
+      if (doc.exists) {
+        final currentFavorite = List<String>.from(doc['list_article']);
+        final currentArticle = article.articleFavorite.first;
+        currentFavorite.add(currentArticle);
+        favorite.doc(uid).update(<String, dynamic>{
+          'list_article': currentFavorite
+        });
+      } else {
+        favorite.doc(uid).set(article.toJsonFavorite());
+      }
+    });
   }
 
   Future<void> getFavoriteDocument(String userId) async {
