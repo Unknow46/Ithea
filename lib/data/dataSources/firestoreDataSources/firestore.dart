@@ -54,10 +54,19 @@ class Firestore {
       if (doc.exists) {
         final currentFavorite = List<String>.from(doc['list_article']);
         final currentArticle = article.articleFavorite.first;
-        currentFavorite.add(currentArticle);
-        favorite.doc(uid).update(<String, dynamic>{
-          'list_article': currentFavorite
-        });
+        //verification if already favorite, we remove it
+        if(currentFavorite.contains(currentArticle)){
+          currentFavorite.remove(currentArticle);
+          favorite.doc(uid).update(<String, dynamic>{
+            'list_article': currentFavorite
+          });
+        //else we had it to the favorite of the user
+        }else {
+          currentFavorite.add(currentArticle);
+          favorite.doc(uid).update(<String, dynamic>{
+            'list_article': currentFavorite
+          });
+        }
       } else {
         favorite.doc(uid).set(article.toJsonFavorite());
       }
