@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
-import '../../globals.dart';
 
 class Article {
   Article(this.name, this.price, this.image, this.isFavourite);
@@ -14,7 +14,7 @@ class Article {
    dynamic isFavourite;
 
   CollectionReference articles = FirebaseFirestore.instance.collection('articles');
-
+  final user =  FirebaseAuth.instance.currentUser;
   Future<String> imageToString() async {
     final bytes = await rootBundle.load('assets/images/teaPic.png');
     final buffer = bytes.buffer;
@@ -33,9 +33,7 @@ class Article {
   }
 
   Future<void> addFavorite(String id) async {
-    if (!articleFavorite.contains(id)){
-      articleFavorite.add(id);
-    }
+    articleFavorite.add(id);
   }
 
   Future<void> removeFavorite(String id) async {
@@ -54,15 +52,15 @@ class Article {
 
   Map<String, dynamic> toJsonBasket(){
     final data = <String, dynamic>{};
-    data['uid'] = client.uid;
+    data['uid'] = user.uid;
     data['list_article'] = articleBasket;
     return data;
   }
 
   Map<String, dynamic> toJsonFavorite(){
     final data = <String, dynamic>{};
-    data['uid'] = client.uid;
-    data['list_article'] = articleBasket;
+    data['uid'] = user.uid;
+    data['list_article'] = articleFavorite;
     return data;
   }
 

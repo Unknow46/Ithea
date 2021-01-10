@@ -45,7 +45,10 @@ class Firestore {
 
   Future<void> getBasketDocument(String userId) async {
     final basket = FirebaseFirestore.instance.collection('panier');
-    return basket.doc(userId).get();
+    await basket.doc(userId).get().then((doc) {
+      final currentBasket= List<String>.from(doc['list_article']);
+      return currentBasket;
+    });
   }
 
   Future<void> insertFavoriteDocument(Article article, String uid) async {

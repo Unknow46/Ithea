@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,12 @@ import 'package:ithea/widgets/navigation_drawer.dart';
 import 'package:ithea/widgets/text_style.dart';
 
 
+CollectionReference panier =
+FirebaseFirestore.instance.collection('panier');
+
+CollectionReference articles =
+FirebaseFirestore.instance.collection('articles');
+
 class Basket extends StatefulWidget {
 
   const Basket({Key key}):super(key: key);
@@ -18,25 +25,41 @@ class Basket extends StatefulWidget {
 }
 
 class _BasketState extends State<Basket> {
-  dynamic basketList;
+  Future<List<String>> basketList;
+  List<dynamic> articleList = [];
   final user =  FirebaseAuth.instance.currentUser;
 
   @override
   // ignore: avoid_void_async
   void initState() {
     super.initState();
-    getBasket();
+    basketList = getBasket();
+    getArticles(basketList);
   }
 
-  Future<void> getBasket() async {
-    setState(() {
-      basketList = Firestore.instance.getBasketDocument(user.uid);
+  Future<List<String>> getBasket() async {
+    var currentBasket = <String>[];
+    await panier.doc(user.uid).get().then((doc) {
+      currentBasket= List<String>.from(doc['list_article']);
+    });
+    return currentBasket;
+  }
+
+   // ignore: inference_failure_on_function_return_type, always_declare_return_types
+   getArticles(Future<List<String>> basketList) async {
+    await basketList.then((list) {
+      list.forEach((element) async {
+        final snapshot = await articles.doc(element).get();
+        setState(() {
+          articleList.add(snapshot);
         });
+      });
+    });
   }
 
 
   @override
-  Widget build(BuildContext context) {
+   Widget build(BuildContext context) {
     return  Scaffold(
           appBar:  const AppBarIthea('Panier'),
           drawer:  const NavigationDrawer(),
@@ -44,7 +67,7 @@ class _BasketState extends State<Basket> {
           body: Stack(
             children: <Widget>[
                       ListView(
-                        children: basketList.map(
+                        children: articleList.map(
                                 (article) {
                                 CardArticle(article['name'], article['price'].toString(),'100','1',article['image']);
                                 const Divider();
@@ -87,3 +110,4 @@ class _BasketState extends State<Basket> {
   }
 
 }
+
