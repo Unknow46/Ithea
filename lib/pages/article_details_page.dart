@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:ithea/data/dataSources/firestoreDataSources/firestore.dart';
 import 'package:ithea/data/entities/article.dart';
 import 'package:ithea/widgets/app_bar_ithea.dart';
+import 'package:ithea/widgets/custom_dialog.dart';
 
 // ignore: must_be_immutable
 class ArticleDetail extends StatelessWidget {
@@ -89,7 +90,7 @@ class ArticleDetail extends StatelessWidget {
           child: InkWell(
             onTap: () async{
               await article.addArticle(id);
-              await addingBasket();
+              await addingBasket(context);
             },
             child: Container(
               width: MediaQuery.of(context).size.width - 50.0,
@@ -123,8 +124,18 @@ class ArticleDetail extends StatelessWidget {
     await Firestore.instance.insertFavoriteDocument(article, uid);
   }
 
-  Future<void> addingBasket() async {
-    await Firestore.instance.insertBasketDocument(article, uid);
+  Future<void> addingBasket(BuildContext context) async {
+    await Firestore.instance.insertBasketDocument(article, uid)
+        .then((value) => showAlert(context));
+  }
+
+  void showAlert(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) =>
+          CustomDialog(
+            icon: Icons.add_shopping_cart, message: 'Article Added', title: 'Congratulations',),
+    );
   }
 
 }
