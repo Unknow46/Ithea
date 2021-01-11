@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ithea/animation/animation_transition.dart';
-import 'package:ithea/user_account/account_main_page.dart';
+import 'package:ithea/widgets/app_bar_ithea.dart';
+
+import 'account_main_page.dart';
 
 class HistoricUser extends StatefulWidget {
 
@@ -39,6 +41,7 @@ class _HistoricUserState extends State<HistoricUser> {
 
   Scaffold userHistoric(BuildContext context) {
     return Scaffold(
+      appBar: const AppBarIthea('Compte'),
       body: ListView(
           children: <Widget>[
       Column(

@@ -6,6 +6,7 @@ import 'package:ithea/pages/article_page.dart';
 import 'package:ithea/pages/basket_page.dart';
 import 'package:ithea/pages/favorite_page.dart';
 import 'package:ithea/pages/home/home_screen.dart';
+import 'package:ithea/pages/user_account/account_main_page.dart';
 import 'package:ithea/widgets/create_drawer_body.dart';
 import 'package:ithea/widgets/text_style.dart';
 import 'create_drawer_header.dart';
@@ -90,7 +91,11 @@ class NavigationDrawer extends StatelessWidget  {
                 icon: Icons.account_box,
                 text: 'Compte',
                 onTap: () {
-                  //TODO Navigation to account page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute<dynamic>(
+                        builder: (context) => const Compte()),
+                  );
                 }
             ),
           ),

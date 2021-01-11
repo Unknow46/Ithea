@@ -1,8 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ithea/animation/animation_transition.dart';
-import 'package:ithea/user_account/historic_user.dart';
-import 'package:ithea/user_account/user_information.dart';
+import 'package:ithea/pages/user_account/user_information.dart';
+import 'package:ithea/widgets/app_bar_ithea.dart';
+
+import 'historic_user.dart';
 
 class Compte extends StatefulWidget {
   const Compte({Key key }) : super(key: key);
@@ -22,20 +25,13 @@ class _CompteState extends State<Compte> {
   }
 
 Scaffold userDisplay(BuildContext context) {
-
+  final user =  FirebaseAuth.instance.currentUser;
   return Scaffold(
-    body: ListView(
+    appBar: const AppBarIthea('Compte'),
+    body: Stack(
       children: <Widget>[
         Column(
             children: <Widget>[
-               const Align(
-                alignment: Alignment.topLeft,
-                child:  Text('Compte', style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 28
-                    ),
-                ),
-              ),
               const Padding(
                   padding: EdgeInsets.only(top: 40),
                 child: Align(
@@ -46,12 +42,12 @@ Scaffold userDisplay(BuildContext context) {
                   ),
                 ),
               ),
-              const Padding(
-                  padding: EdgeInsets.only(top:10),
+              Padding(
+                  padding: const EdgeInsets.only(top:10),
                   child: Align(
                     alignment: Alignment.topCenter,
                     child: Text(
-                      'Nathan Sens', style: TextStyle(
+                      user.displayName, style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18
                       ),
