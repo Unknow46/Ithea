@@ -21,46 +21,45 @@ class _BasketState extends State<Basket> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-          appBar:  const AppBarIthea('Panier'),
-          drawer:  const NavigationDrawer(),
-          backgroundColor: Colors.black,
-          body: Stack(
-            children: <Widget>[
-                  Column(
-                    children:  const <Widget>[
-                         CardArticle('AquaSummer', '4.00€',  '100', '1', 'assets/images/AquaSummer.png'),
-                         Divider()
-                    ],
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
-                      const Divider(),
-                      const Padding(padding: EdgeInsets.only(top: 10)),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                           const FlatButton(
-                            //minWidth: 169,
-                            //height: 45,
-                            disabledColor: Colors.green,
-                            onPressed: null,
-                            child: CustomTextStyle('Valider le panier', FontWeight.normal, 18, colors: Colors.white,)
-                          ),
-                          Column(
-                            children: const <Widget>[
-                              CustomTextStyle('Total:', FontWeight.normal, 18),
-                              Padding(padding: EdgeInsets.only(top: 5)),
-                              CustomTextStyle('28,00€', FontWeight.normal, 16),
-                            ],
-                          )
-                        ],
-                      ),
-                    const Padding(padding: EdgeInsets.only(bottom: 40))
-                    ],
-                  )
-            ],
-          )
+        appBar:  const AppBarIthea('Panier'),
+        drawer:  const NavigationDrawer(),
+        body: Stack(
+          children: <Widget>[
+            Column(
+              children:  const <Widget>[
+                CardArticle('AquaSummer', '4.00€',  '100', '1', 'assets/images/AquaSummer.png'),
+                Divider()
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                const Divider(),
+                const Padding(padding: EdgeInsets.only(top: 10)),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    const FlatButton(
+                      //minWidth: 169,
+                      //height: 45,
+                        disabledColor: Colors.green,
+                        onPressed: null,
+                        child: CustomTextStyle('Valider le panier', FontWeight.normal, 18, colors: Colors.white,)
+                    ),
+                    Column(
+                      children: const <Widget>[
+                        CustomTextStyle('Total:', FontWeight.normal, 18),
+                        Padding(padding: EdgeInsets.only(top: 5)),
+                        CustomTextStyle('28,00€', FontWeight.normal, 16),
+                      ],
+                    )
+                  ],
+                ),
+                const Padding(padding: EdgeInsets.only(bottom: 40))
+              ],
+            )
+          ],
+        )
     );
   }
 

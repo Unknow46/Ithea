@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -20,10 +21,12 @@ class ArticlePage extends StatefulWidget {
 
 class _ArticlePageState extends State<ArticlePage> {
   List<dynamic> articlesList = [];
+  dynamic user;
 
   @override
   void initState() {
     getArticles();
+    getUser();
     super.initState();
   }
 
@@ -33,6 +36,13 @@ class _ArticlePageState extends State<ArticlePage> {
     setState(() {
       articlesList = snapshot.docs;
     });
+  }
+
+  Future<dynamic> getUser() async {
+    setState(() {
+      user =  FirebaseAuth.instance.currentUser;
+    });
+    return user;
   }
 
   @override
@@ -54,7 +64,7 @@ class _ArticlePageState extends State<ArticlePage> {
               childAspectRatio: 0.8,
                 /**/
               children: articlesList.map(
-                (article) => _buildCard(article['name'], article['price'].toString(),article['image'], true, context, false)).toList(),
+                (article) => _buildCard(article.id, article['name'], article['price'].toString(),article['image'], false, context, false)).toList(),
             ),
           ),
         ],
@@ -62,7 +72,7 @@ class _ArticlePageState extends State<ArticlePage> {
     );
   }
 
-  Widget _buildCard(String name, String price, String imgpath, bool isFavourite,
+  Widget _buildCard(String id, String name, String price, String imgpath, bool isFavourite,
       dynamic buildContext, bool added) {
     return Padding(
       padding: const EdgeInsets.only(top: 15, bottom: 5, left: 5, right: 5),
@@ -70,9 +80,11 @@ class _ArticlePageState extends State<ArticlePage> {
         onTap: () {
           Navigator.of(buildContext).push(MaterialPageRoute<dynamic>(
               builder: (context) => ArticleDetail(
+                    id:id,
                     assetPath: imgpath,
                     teaprice: price,
                     teaname: name,
+                    uid: user.uid,
                   )));
         },
         child: Container(
