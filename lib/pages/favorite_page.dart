@@ -19,7 +19,6 @@ class _FavoriteState extends State<Favorite> {
     return  Scaffold(
       appBar:  const AppBarIthea('Favoris'),
       drawer:  const NavigationDrawer(),
-      backgroundColor: Colors.white,
       body: Stack(
           children: <Widget>[
       Column(
