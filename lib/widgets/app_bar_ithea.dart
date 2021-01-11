@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:ithea/pages/article_page.dart';
 import 'package:ithea/widgets/text_style.dart';
 
 class AppBarIthea extends StatelessWidget implements PreferredSizeWidget {
@@ -45,7 +46,11 @@ class AppBarIthea extends StatelessWidget implements PreferredSizeWidget {
                     alignment: Alignment.bottomRight,
                     child: GestureDetector(
                       onTap: () {
-                        //TODO Navigation to shopping page
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute<dynamic>(
+                              builder: (context) => const ArticlePage()),
+                        );
                       },
                       child: Image.asset('assets/images/panier.png'),
                     ),
